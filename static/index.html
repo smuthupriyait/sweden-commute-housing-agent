@@ -68,17 +68,16 @@
     /* Minimal Scandinavian Hero */
     .hero-container {
       border-bottom: 1px solid var(--border-subtle);
-      padding: 2.25rem 2rem 1.75rem;
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.25) 0%, rgba(11, 15, 25, 0) 100%);
+      padding: 1.75rem 2rem 1.5rem;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(11, 15, 25, 0.95) 100%);
     }
     .hero-inner {
       max-width: 1440px;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 2rem;
     }
     .hero-title {
       font-size: 1.85rem;
@@ -92,6 +91,25 @@
       color: var(--text-muted);
       max-width: 680px;
       line-height: 1.45;
+    }
+    .hero-image-wrap {
+      width: 280px;
+      height: 110px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-image-wrap { display: none; }
     }
     .stage-indicator {
       display: flex;
@@ -343,6 +361,20 @@
       transition: border-color 0.15s;
     }
     .scandi-card:hover { border-color: rgba(96, 165, 250, 0.4); }
+    .card-photo-wrap {
+      width: 100%;
+      height: 125px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 0.1rem;
+    }
+    .card-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .scandi-header {
       display: flex;
       justify-content: space-between;
@@ -509,6 +541,9 @@
         <p class="hero-desc">
           Understand what rent you can afford, discover suitable areas within your commute corridor, and find where to search for housing in Sweden.
         </p>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="/images/hero_banner.png" alt="Stockholm Transit & Skyline">
       </div>
     </div>
   </div>
@@ -1145,6 +1180,9 @@
         const sourceVal = apt.source || 'Public Marketplace';
 
         card.innerHTML = 
+          '<div class="card-photo-wrap">' +
+            '<img src="/images/interior_nordic.png" alt="Nordic Apartment Layout">' +
+          '</div>' +
           '<div class="scandi-header">' +
             '<div>' +
               '<span class="scandi-tag tag-hypothetical">Hypothetical Scenario</span>' +
