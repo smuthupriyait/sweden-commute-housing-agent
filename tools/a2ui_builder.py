@@ -1,15 +1,16 @@
 """
 A2UI Surface Builder for Sweden Housing & Commute Navigator.
-Builds v0.8 A2UI Component trees that render natively as cards and tables.
+Builds v0.8 A2UI Component trees that render natively as cards and interactive surfaces.
+Supports Area Cards, Budget Cards, Apartment Listing Cards, and Neighborhood Comparison Cards.
 """
 
 from typing import List, Dict, Any
 
 def build_area_cards_a2ui(ranked_areas: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Builds A2UI v0.8 card representations for ranked Swedish areas."""
+    """Builds A2UI v0.8 card representations for ranked Swedish municipalities/areas."""
     components = []
     
-    for area in ranked_areas[:4]:
+    for area in ranked_areas[:6]:
         name = area.get("area_name", "Area")
         muni = area.get("municipality", "")
         time_m = area.get("commute_minutes", 0)
@@ -21,8 +22,8 @@ def build_area_cards_a2ui(ranked_areas: List[Dict[str, Any]]) -> List[Dict[str, 
         tax = scb.get("tax_rate_percent", "N/A")
         
         card = {
-            "type": "Card",
-            "id": f"card_{name.lower().replace(' ', '_')}",
+            "type": "AreaCard",
+            "id": f"card_{name.lower().replace(' ', '_').replace('(', '').replace(')', '')}",
             "title": f"#{area.get('rank', 1)} {name} ({muni})",
             "score": rank_score,
             "badge": f"{time_m} min via {mode}",
@@ -32,10 +33,74 @@ def build_area_cards_a2ui(ranked_areas: List[Dict[str, Any]]) -> List[Dict[str, 
                 {"label": "Commute to Workplace", "val": f"{time_m} mins ({mode})"},
                 {"label": "Corridor Highlights", "val": area.get("corridor_notes", "Fast commuter connection")}
             ],
-            "tags": [muni, mode, f"Score: {rank_score}/100"]
+            "tags": [muni, mode, f"Score: {rank_score}/100"],
+            "action": {
+                "type": "explore_neighborhoods",
+                "municipality": muni,
+                "label": f"Explore {muni} Neighborhoods →"
+            }
         }
         components.append(card)
         
+    return components
+
+def build_apartment_cards_a2ui(listings: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Builds A2UI v0.8 card representations for verified apartment listings."""
+    components = []
+    
+    for apt in listings:
+        card = {
+            "type": "ApartmentCard",
+            "id": apt["id"],
+            "title": apt["title"],
+            "match_score": apt.get("match_score", 85.0),
+            "rent_sek": apt["rent_sek"],
+            "rooms": apt["rooms"],
+            "size_sqm": apt["size_sqm"],
+            "housing_type": apt["housing_type"],
+            "municipality": apt["municipality"],
+            "neighborhood": apt["neighborhood"],
+            "address": apt["address"],
+            "nearest_transit_stop": apt["nearest_transit_stop"],
+            "commute_minutes": apt.get("calculated_commute_minutes", 15),
+            "workplace": apt.get("workplace_destination", "Workplace"),
+            "deposit": f"{apt['deposit_sek']:,} SEK ({apt['deposit_terms']})",
+            "utilities_included": apt["utilities_included"],
+            "utilities_excluded": apt.get("utilities_excluded", []),
+            "available_from": apt["available_from"],
+            "lease_duration": apt["lease_duration"],
+            "source": apt["source"],
+            "source_url": apt["source_url"],
+            "last_verified_at": apt["last_verified_at"],
+            "match_explanation": apt.get("match_explanation", ""),
+            "budget_delta_sek": apt.get("budget_delta_sek", 0),
+            "features": apt.get("features", [])
+        }
+        components.append(card)
+
+    return components
+
+def build_neighborhood_cards_a2ui(neighborhoods: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Builds A2UI v0.8 card representations for neighborhood comparisons."""
+    components = []
+
+    for nb in neighborhoods:
+        card = {
+            "type": "NeighborhoodCard",
+            "id": f"nb_{nb['neighborhood'].lower().replace(' ', '_')}",
+            "neighborhood": nb["neighborhood"],
+            "municipality": nb["municipality"],
+            "character": nb["character"],
+            "primary_station": nb["primary_transit_station"],
+            "transit_modes": nb["transit_modes"],
+            "commute_minutes": nb.get("commute_minutes", 15),
+            "selected_workplace": nb.get("selected_workplace", "Stockholm Central"),
+            "amenities": nb.get("amenities", []),
+            "vibe_tags": nb.get("vibe_tags", []),
+            "typical_housing": nb.get("typical_housing_stock", "")
+        }
+        components.append(card)
+
     return components
 
 def build_budget_a2ui(budget_info: Dict[str, Any]) -> Dict[str, Any]:

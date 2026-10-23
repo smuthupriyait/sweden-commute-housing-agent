@@ -59,7 +59,7 @@ def calculate_rent_budget(
         f"With a monthly net income of {net_income_sek:,.0f} SEK and {fixed_expenses_sek:,.0f} SEK in fixed costs, "
         f"a {buffer_percentage:.0f}% savings buffer reserves {buffer_amount:,.0f} SEK. "
         f"Recommended prudent rent is {affordable_prudent:,.0f} SEK/month (max {affordable_max:,.0f} SEK/month). "
-        f"After paying recommended rent, you retain ~{left_after_rent_prudent:,.0f} SEK for living expenses and discretionary savings."
+        f"After paying recommended rent, you retain ~{left_after_rent_prudent:,.0f} SEK as remaining disposable income ('Kvar att leva på') for living expenses and discretionary savings."
     )
 
     disclaimer = (
@@ -78,8 +78,13 @@ def calculate_rent_budget(
         "max_rent_sek": round(affordable_max, 0),
         "left_to_live_on_prudent_sek": round(left_after_rent_prudent, 0),
         "left_to_live_on_max_sek": round(left_after_rent_max, 0),
+        "residual_disposable_income_sek": round(left_after_rent_prudent, 0),
+        "emergency_buffer_sek": round(buffer_amount, 2),
+        "prudent_rent_sek": round(affordable_prudent, 0),
+        "konsumentverket_baseline_sek": reference_living_cost,
         "swedish_baseline_reference_sek": reference_living_cost,
         "financial_health": health_status,
         "explanation": explanation,
+        "calculation_explanation": explanation,
         "eligibility_disclaimer": disclaimer
     }

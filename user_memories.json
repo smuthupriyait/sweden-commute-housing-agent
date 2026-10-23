@@ -1,1 +1,16 @@
-{}
+{
+  "default_user": {
+    "notes": [
+      "Prefers quiet suburban rail corridor with low municipal tax",
+      "Remember that I prefer apartments near commuter train lines in Solna"
+    ]
+  },
+  "test_eval_user": {
+    "workplace": "Stockholm Central / City",
+    "max_commute_minutes": 35,
+    "net_income_sek": 38000,
+    "fixed_expenses_sek": 11000,
+    "family": "1 adult, 0 children",
+    "notes": []
+  }
+}
