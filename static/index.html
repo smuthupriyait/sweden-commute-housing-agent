@@ -3,161 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweden Commute & Housing Finder | HemPendlare</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>HomeNearWork | Sweden Commute & Housing Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070b14;
-      --card-bg: #0f172a;
+      --bg: #0b0f19;
+      --card-bg: #111827;
       --surface: #1e293b;
-      --surface-light: #334155;
-      --accent: #0284c7;
-      --accent-hover: #0369a1;
-      --accent-glow: rgba(2, 132, 199, 0.35);
-      --yellow: #facc15;
+      --surface-light: #2d3748;
+      --surface-subtle: rgba(255, 255, 255, 0.03);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #60a5fa;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --yellow: #fbbf24;
       --emerald: #10b981;
-      --rose: #f43f5e;
       --text: #f8fafc;
       --text-muted: #94a3b8;
+      --text-subtle: #64748b;
       --border: #1e293b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
+    
+    /* Top Header */
     header {
-      background: linear-gradient(135deg, #050811 0%, #0d172e 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 0.9rem 2rem;
+      background: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
     }
-    .brand { display: flex; align-items: center; gap: 0.85rem; }
-    .flag-icon { font-size: 2rem; }
-    .brand-title { font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .brand-sub { font-size: 0.75rem; color: var(--yellow); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
-    .header-badges { display: flex; gap: 0.6rem; align-items: center; }
-    .badge-pill {
-      font-size: 0.72rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 20px;
-      font-weight: 600;
-      background: rgba(2, 132, 199, 0.12);
-      border: 1px solid rgba(2, 132, 199, 0.35);
-      color: #7dd3fc;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .brand-mark {
+      background: var(--accent-soft);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      color: var(--accent-light);
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.85rem;
     }
+    .brand-title { font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .header-tagline { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Minimal Scandinavian Hero */
     .hero-container {
-      position: relative;
-      background: linear-gradient(180deg, rgba(7, 11, 20, 0.4) 0%, rgba(7, 11, 20, 0.95) 100%), url('/images/hero_banner.png');
-      background-size: cover;
-      background-position: center 35%;
-      border-bottom: 1px solid var(--border);
-      padding: 2.5rem 2rem 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 2.25rem 2rem 1.75rem;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.25) 0%, rgba(11, 15, 25, 0) 100%);
+    }
+    .hero-inner {
+      max-width: 1440px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-    }
-    .hero-content { max-width: 820px; z-index: 2; }
-    .hero-badge {
-      display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: rgba(250, 204, 21, 0.15);
-      border: 1px solid rgba(250, 204, 21, 0.4);
-      color: var(--yellow);
-      padding: 0.3rem 0.75rem;
-      border-radius: 20px;
-      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
     .hero-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
+      font-size: 1.85rem;
+      font-weight: 700;
       color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
     }
     .hero-desc {
       font-size: 0.95rem;
-      color: #cbd5e1;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.8);
-      max-width: 720px;
+      color: var(--text-muted);
+      max-width: 680px;
+      line-height: 1.45;
     }
-    .hero-stats {
+    .stage-indicator {
       display: flex;
-      gap: 1.25rem;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      padding: 0.85rem 1.4rem;
-      border-radius: 12px;
-      z-index: 2;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
-    .hero-stat-item { text-align: center; }
-    .hero-stat-num { font-size: 1.35rem; font-weight: 800; color: #38bdf8; font-family: 'JetBrains Mono'; }
-    .hero-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+    .stage-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-light); }
+
+    /* Main Grid Layout */
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 460px 1fr;
+      grid-template-columns: 380px 1fr;
       gap: 1.5rem;
-      padding: 1.5rem 2rem;
-      max-width: 1750px;
+      padding: 1.75rem 2rem;
+      max-width: 1440px;
       margin: 0 auto;
       width: 100%;
     }
-    @media (max-width: 1100px) {
-      main { grid-template-columns: 1fr; padding: 1rem; }
-      .hero-container { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    @media (max-width: 1040px) {
+      main { grid-template-columns: 1fr; padding: 1.25rem 1rem; }
+      header { padding: 0.85rem 1rem; }
+      .hero-container { padding: 1.5rem 1rem; }
     }
+
     .panel {
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
       padding: 1.35rem;
       display: flex;
       flex-direction: column;
       gap: 1.15rem;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
     }
     .panel-header {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .panel-title {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
+      letter-spacing: -0.01em;
     }
+    .step-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent-light);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Form Inputs */
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
     label {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -165,302 +172,360 @@
     }
     input, select {
       background: var(--surface);
-      border: 1px solid var(--surface-light);
+      border: 1px solid var(--border-subtle);
       color: #fff;
-      padding: 0.65rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
       font-family: inherit;
       outline: none;
-      transition: all 0.2s;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
     input:focus, select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
     }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
+
+    /* Clean Scandinavian Buttons */
     .btn {
       background: var(--accent);
       color: #fff;
-      border: none;
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.88rem;
+      border: 1px solid transparent;
+      padding: 0.65rem 1.15rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
+      gap: 0.45rem;
+      transition: background 0.15s, border-color 0.15s;
       text-decoration: none;
     }
-    .btn:hover { background: var(--accent-hover); box-shadow: 0 4px 14px var(--accent-glow); }
+    .btn:hover { background: var(--accent-hover); }
     .btn-secondary {
       background: var(--surface);
-      border: 1px solid var(--surface-light);
-      color: #e2e8f0;
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
     }
     .btn-secondary:hover { background: var(--surface-light); }
-    .btn-emerald { background: #059669; }
-    .btn-emerald:hover { background: #047857; }
-    .btn-danger { background: #dc2626; }
-    .btn-danger:hover { background: #b91c1c; }
-    .budget-display {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--surface-light);
-      border-radius: 10px;
-      padding: 1rem;
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.75rem;
+    }
+    .btn-ghost:hover { color: #fff; background: var(--surface-subtle); }
+    .btn-danger {
+      background: transparent;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.1); }
+
+    /* Stage A: Prominent 4-Metric Budget Cards */
+    .budget-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+    }
+    .budget-metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.85rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.2rem;
     }
-    .budget-row {
+    .budget-metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .budget-metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .budget-metric-value.highlight-prudent { color: var(--yellow); }
+    .budget-metric-value.highlight-leftover { color: var(--emerald); }
+
+    /* Collapsible Details Drawer */
+    details.info-drawer {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      overflow: hidden;
+    }
+    details.info-drawer summary {
+      padding: 0.6rem 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent-light);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-size: 0.82rem;
+      justify-content: space-between;
+      user-select: none;
     }
-    .stat-mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-    .highlight-yellow { color: var(--yellow); }
-    .highlight-green { color: var(--emerald); }
+    details.info-drawer summary:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .drawer-content {
+      padding: 0.75rem 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .planning-notice {
+      font-size: 0.73rem;
+      color: var(--text-subtle);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    /* Tabs Navigation */
     .tabs-nav {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.35rem;
       background: var(--surface);
-      padding: 0.35rem;
-      border-radius: 10px;
+      padding: 0.3rem;
+      border-radius: var(--radius-md);
       overflow-x: auto;
+      border: 1px solid var(--border-subtle);
     }
     .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 0.55rem 1.05rem;
-      font-weight: 700;
-      font-size: 0.83rem;
-      border-radius: 7px;
+      padding: 0.5rem 0.95rem;
+      font-weight: 600;
+      font-size: 0.82rem;
+      border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: background 0.15s, color 0.15s;
       white-space: nowrap;
     }
     .tab-btn.active {
       background: var(--card-bg);
       color: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
     }
     .tab-pane { display: none; flex-direction: column; gap: 1rem; }
     .tab-pane.active { display: flex; }
+
+    /* Clean Scandinavian Cards */
     .ranking-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.15rem;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1rem;
     }
-    .a2ui-card {
+    .scandi-card {
       background: var(--surface);
-      border: 1px solid var(--surface-light);
-      border-radius: 12px;
-      padding: 1.15rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      position: relative;
-      transition: transform 0.2s, border-color 0.2s;
+      gap: 0.65rem;
+      transition: border-color 0.15s;
     }
-    .a2ui-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
+    .scandi-card:hover { border-color: rgba(96, 165, 250, 0.4); }
+    .scandi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
-    .a2ui-badge-top {
-      position: absolute;
-      top: 0.9rem;
-      right: 0.9rem;
-      background: rgba(14, 165, 233, 0.15);
-      border: 1px solid rgba(14, 165, 233, 0.4);
-      color: #38bdf8;
-      font-size: 0.72rem;
+    .scandi-title {
+      font-size: 0.98rem;
       font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+      line-height: 1.3;
     }
-    .sample-tag {
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fbbf24;
+    .scandi-tag {
       font-size: 0.68rem;
       font-weight: 700;
-      padding: 0.2rem 0.55rem;
+      padding: 0.18rem 0.5rem;
       border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      white-space: nowrap;
     }
-    .a2ui-card-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #fff;
-      padding-right: 4.5rem;
+    .tag-hypothetical {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
     }
-    .a2ui-metric-row {
+    .tag-rank {
+      background: var(--accent-soft);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: var(--accent-light);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stat-mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .scandi-metric-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.82rem;
-      border-bottom: 1px dashed rgba(255,255,255,0.07);
-      padding-bottom: 0.35rem;
+      font-size: 0.8rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
     }
-    .a2ui-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.2rem; }
-    .a2ui-pill {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      color: #cbd5e1;
+    .scandi-metric-row:last-of-type { border-bottom: none; }
+
+    /* Expandable "View details" Drawer for Secondary Property Data */
+    details.card-details {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: var(--radius-sm);
+      margin-top: 0.2rem;
+      font-size: 0.74rem;
+    }
+    details.card-details summary {
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      color: var(--text-muted);
       font-weight: 600;
+      user-select: none;
     }
+    details.card-details summary:hover { color: #fff; }
+    .card-details-body {
+      padding: 0.5rem 0.6rem 0.65rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Chat Assistant */
     .chat-container {
       display: flex;
       flex-direction: column;
-      height: 520px;
+      height: 500px;
       background: var(--surface);
-      border: 1px solid var(--surface-light);
-      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
       overflow: hidden;
     }
     .chat-messages {
       flex: 1;
       overflow-y: auto;
-      padding: 1.25rem;
+      padding: 1.15rem;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 0.85rem;
     }
     .message {
-      max-width: 82%;
-      padding: 0.8rem 1.05rem;
-      border-radius: 12px;
-      font-size: 0.86rem;
+      max-width: 84%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
       line-height: 1.5;
     }
     .message.user {
       align-self: flex-end;
       background: var(--accent);
       color: #fff;
-      border-bottom-right-radius: 2px;
     }
     .message.agent {
       align-self: flex-start;
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: #e2e8f0;
-      border-bottom-left-radius: 2px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
     }
-    .message-time { font-size: 0.65rem; opacity: 0.7; margin-top: 0.3rem; text-align: right; }
+    .message-time { font-size: 0.65rem; opacity: 0.65; margin-top: 0.25rem; text-align: right; }
     .chat-input-row {
       display: flex;
-      padding: 0.85rem;
+      padding: 0.75rem;
       background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      gap: 0.6rem;
+      border-top: 1px solid var(--border-subtle);
+      gap: 0.5rem;
     }
     .chat-input-row input { flex: 1; }
-    .quick-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; padding: 0.5rem 0.85rem; background: rgba(15,23,42,0.6); }
+    .quick-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.5rem 0.75rem; background: rgba(0, 0, 0, 0.2); }
     .quick-chip {
       font-size: 0.72rem;
       background: var(--surface);
-      border: 1px solid var(--surface-light);
-      padding: 0.3rem 0.65rem;
-      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.25rem 0.6rem;
+      border-radius: 14px;
       cursor: pointer;
-      color: #cbd5e1;
-      transition: all 0.2s;
+      color: var(--text-muted);
+      transition: border-color 0.15s, color 0.15s;
     }
-    .quick-chip:hover { border-color: var(--accent); color: #fff; }
-    .memory-badge-card {
-      background: rgba(14, 165, 233, 0.08);
-      border: 1px solid rgba(14, 165, 233, 0.3);
-      border-radius: 10px;
+    .quick-chip:hover { border-color: var(--accent-light); color: #fff; }
+
+    /* Clean Badge for Saved Preferences */
+    .saved-prefs-box {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
       padding: 0.85rem;
-      font-size: 0.8rem;
-    }
-    .memory-badge-title { font-weight: 700; color: #38bdf8; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
-    .memory-list { display: flex; flex-direction: column; gap: 0.35rem; color: #cbd5e1; }
-    .disclaimer-box {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-size: 0.8rem;
-      color: #fcd34d;
-      line-height: 1.45;
-    }
-    .transparency-banner {
-      background: rgba(2, 132, 199, 0.08);
-      border: 1px solid rgba(2, 132, 199, 0.3);
-      border-radius: 10px;
-      padding: 0.85rem 1.15rem;
-      font-size: 0.82rem;
-      color: #bae6fd;
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+    }
+    .saved-prefs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <span class="flag-icon">🇸🇪</span>
+      <span class="brand-mark">SE</span>
       <div>
-        <div class="brand-title">Sweden Commute & Housing Finder</div>
-        <div class="brand-sub">Smart Apartment Discovery & Transit Matcher</div>
+        <div class="brand-title">HomeNearWork</div>
+        <div class="header-tagline">Sweden Commute & Housing Discovery</div>
       </div>
     </div>
-    <div class="header-badges">
-      <div class="badge-pill"><span>📡</span> SCB Doris Open Data (BO0406Tab01)</div>
-      <div class="badge-pill"><span>🚆</span> SL Public Transit Network Corridors</div>
-      <div class="badge-pill"><span>🔒</span> Local Privacy-First Memory Store</div>
+    <div class="stage-indicator">
+      <span class="stage-dot"></span>
+      <span>Stockholm & Regional Corridors</span>
     </div>
   </header>
 
   <div class="hero-container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span>🧭</span> Explainable Rent Budgeting & Commute Corridors
-      </div>
-      <h1 class="hero-title">Find Realistic Housing Near Your Workplace</h1>
-      <p class="hero-desc">
-        Evaluate door-to-door transit times, authentic SCB municipal tax and rent statistics, curated representative apartments, and official Swedish housing queues with transparent cost-of-living guidance.
-      </p>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat-item">
-        <div class="hero-stat-num">20</div>
-        <div class="hero-stat-label">Municipalities Analyzed</div>
-      </div>
-      <div class="hero-stat-item">
-        <div class="hero-stat-num">SL Corridors</div>
-        <div class="hero-stat-label">Rail & Metro Networks</div>
-      </div>
-      <div class="hero-stat-item">
-        <div class="hero-stat-num">SCB Open API</div>
-        <div class="hero-stat-label">Official Statistics</div>
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">Discover where to live near your workplace</h1>
+        <p class="hero-desc">
+          Understand what rent you can afford, discover suitable areas within your commute corridor, and find where to search for housing.
+        </p>
       </div>
     </div>
   </div>
+  </div>
 
   <main>
-    <!-- Left Column: Financial & Relocation Profile -->
+    <!-- Left Column: Stage A - Your Budget & Preferences -->
     <div class="panel">
       <div class="panel-header">
         <div class="panel-title">
-          <span>⚙️</span> Financial & Relocation Profile
+          <span class="step-badge">Stage A</span>
+          <span>Your Rent Budget</span>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Monthly Take-Home Income (Netto i SEK)</label>
+        <label>Monthly Take-Home Income (Netto SEK)</label>
         <input type="number" id="netIncome" value="38000" step="1000" onchange="executeFullAnalysis()">
       </div>
 
@@ -470,14 +535,14 @@
           <input type="number" id="fixedExpenses" value="11000" step="500" onchange="executeFullAnalysis()">
         </div>
         <div class="form-group">
-          <label>Safety Buffer (%)</label>
+          <label>Savings Reserve (%)</label>
           <input type="number" id="bufferPct" value="15" min="5" max="40" onchange="executeFullAnalysis()">
         </div>
       </div>
 
       <div class="grid-2">
         <div class="form-group">
-          <label>Adults</label>
+          <label>Household Adults</label>
           <input type="number" id="adultsCount" value="1" min="1" max="5" onchange="executeFullAnalysis()">
         </div>
         <div class="form-group">
@@ -500,120 +565,128 @@
       </div>
 
       <div class="form-group">
-        <label>Maximum Desired Commute (Minutes one-way)</label>
+        <label>Max Commute (Minutes)</label>
         <div style="display:flex; gap:0.75rem; align-items:center;">
           <input type="range" id="maxCommute" min="15" max="60" value="35" style="flex:1;" oninput="document.getElementById('commuteVal').innerText = this.value" onchange="executeFullAnalysis()">
-          <span id="commuteVal" style="font-family:'JetBrains Mono'; font-weight:700; width:45px;">35</span> min
+          <span id="commuteVal" style="font-family:'JetBrains Mono'; font-weight:700; width:36px; text-align:right;">35</span> min
         </div>
       </div>
 
       <button class="btn" onclick="executeFullAnalysis()">
-        <span>⚡</span> Run Affordability & Area Analysis
+        Calculate Budget & Recommended Areas
       </button>
 
-      <!-- Affordability Breakdown -->
-      <div class="budget-display">
-        <div style="font-weight:700; color:#fff; font-size:0.9rem; border-bottom:1px solid #1f293d; padding-bottom:0.35rem;">
-          Planning Heuristic Breakdown ('Kvar att leva på')
+      <!-- Prominent 4-Result Budget Cards -->
+      <div class="budget-hero-grid">
+        <div class="budget-metric-card">
+          <span class="budget-metric-label">Recommended Rent</span>
+          <span class="budget-metric-value highlight-prudent" id="resPrudentRent">12,540 SEK</span>
         </div>
-        <div class="budget-row">
-          <span>Monthly Net Take-Home Income:</span>
-          <span class="stat-mono" id="resNetIncome">38,000 SEK</span>
+        <div class="budget-metric-card">
+          <span class="budget-metric-label">Max Suggested Rent</span>
+          <span class="budget-metric-value" id="resMaxRent">15,960 SEK</span>
         </div>
-        <div class="budget-row">
-          <span>Fixed Monthly Obligations:</span>
-          <span class="stat-mono" id="resFixedExp">11,000 SEK</span>
+        <div class="budget-metric-card">
+          <span class="budget-metric-label">Savings Reserve</span>
+          <span class="budget-metric-value" id="resBuffer">5,700 SEK</span>
         </div>
-        <div class="budget-row">
-          <span>Recommended Prudent Rent (Heuristic Guideline):</span>
-          <span class="stat-mono highlight-yellow" id="resPrudentRent">12,540 SEK/mo</span>
-        </div>
-        <div class="budget-row">
-          <span>Maximum Suggested Rent (Upper Heuristic Bound):</span>
-          <span class="stat-mono" id="resMaxRent">15,960 SEK/mo</span>
-        </div>
-        <div class="budget-row">
-          <span>Emergency Savings Reserve:</span>
-          <span class="stat-mono" id="resBuffer">5,700 SEK</span>
-        </div>
-        <div class="budget-row" style="background:rgba(255,255,255,0.03); padding:0.25rem 0.4rem; border-radius:4px;">
-          <span>Remaining After Rent & Fixed (Before Reserve):</span>
-          <span class="stat-mono highlight-yellow" id="resRemainBefore">14,460 SEK</span>
-        </div>
-        <div class="budget-row" style="background:rgba(16,185,129,0.08); padding:0.25rem 0.4rem; border-radius:4px;">
-          <span>Remaining After Rent, Fixed & Reserve:</span>
-          <span class="stat-mono highlight-green" id="resLeftover">8,760 SEK</span>
-        </div>
-        <div class="budget-row">
-          <span>Konsumentverket General Reference:</span>
-          <span class="stat-mono" id="resBaseline">8,500 SEK</span>
-        </div>
-        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.4rem; line-height:1.45;" id="resExplanation">
-          Calculating...
-        </div>
-        <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.35rem; line-height:1.4; border-top:1px dashed #334155; padding-top:0.35rem;" id="resMaxExplanation">
-          Maximum suggested rent is an upper heuristic boundary (~42% of take-home pay) and should not be viewed as universally affordable.
+        <div class="budget-metric-card">
+          <span class="budget-metric-label">Remaining Monthly</span>
+          <span class="budget-metric-value highlight-leftover" id="resLeftover">8,760 SEK</span>
         </div>
       </div>
 
-      <div class="disclaimer-box">
-        ⚠️ <strong>Planning Heuristic & Benchmark Notice:</strong> The figures above reflect customizable planning heuristics, not an official credit check or legal affordability standard. The 8,500 SEK reference is a general national living benchmark (Konsumentverket), not a personalized calculation. Remaining disposable income must cover food/groceries (~4,000 SEK/person), SL public transport (1,020 SEK/mo), household utilities, and home insurance (<em>hemförsäkring</em>).
+      <div class="planning-notice">
+        Planning estimates for financial guidance, not official bank or landlord approval.
       </div>
+
+      <!-- Collapsible Detailed Calculations Drawer -->
+      <details class="info-drawer">
+        <summary>
+          <span>How we calculate your budget</span>
+          <span>▾</span>
+        </summary>
+        <div class="drawer-content">
+          <div style="display:flex; justify-content:space-between;">
+            <span>Monthly Net Income:</span>
+            <span class="stat-mono" id="resNetIncome">38,000 SEK</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>Fixed Expenses:</span>
+            <span class="stat-mono" id="resFixedExp">11,000 SEK</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>Remaining before reserve:</span>
+            <span class="stat-mono" id="resRemainBefore">14,460 SEK</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>Konsumentverket Benchmark:</span>
+            <span class="stat-mono" id="resBaseline">8,500 SEK</span>
+          </div>
+          <div style="font-size:0.74rem; line-height:1.4; border-top:1px dashed rgba(255,255,255,0.08); padding-top:0.4rem;" id="resExplanation">
+            Calculating breakdown...
+          </div>
+          <div style="font-size:0.72rem; color:var(--text-subtle);" id="resMaxExplanation">
+            Max rent is an upper heuristic bound (~42% of take-home pay).
+          </div>
+        </div>
+      </details>
 
       <!-- Saved Preferences Card -->
-      <div class="memory-badge-card">
-        <div class="memory-badge-title">
-          <span>🔒 Saved Preferences</span>
-          <div style="display:flex; gap:0.4rem;">
-            <button class="btn btn-secondary" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="openMemoryModal()">Edit</button>
-            <button class="btn btn-danger" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="clearMemoryProfile()">Clear</button>
+      <div class="saved-prefs-box">
+        <div class="saved-prefs-header">
+          <span>Saved Preferences</span>
+          <div style="display:flex; gap:0.35rem;">
+            <button class="btn btn-ghost" onclick="openMemoryModal()">Edit</button>
+            <button class="btn btn-ghost btn-danger" onclick="clearMemoryProfile()">Clear</button>
           </div>
         </div>
-        <div style="font-size:0.73rem; color:#94a3b8; margin-top:0.2rem; line-height:1.35;">
-          Preferences are stored locally on your server session (in <code>user_memories.json</code>). No external tracking or account syncing is active. You can edit criteria or wipe the stored session at any time below.
+        <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
+          <span>Target Hub:</span>
+          <span id="memorySavedWorkplace" style="color:#fff; font-weight:600;">Stockholm Central</span>
         </div>
-        <div class="memory-list" id="memoryList" style="margin-top:0.4rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="color:var(--text-muted);">Saved criteria:</span>
-            <span id="memoryFactsCount" style="color:#38bdf8; font-weight:600;">Loading...</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="color:var(--text-muted);">Target Hub:</span>
-            <span id="memorySavedWorkplace" style="color:#fff; font-weight:600;">Stockholm Central</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="color:var(--text-muted);">Target Rent:</span>
-            <span id="memorySavedRent" style="color:#fff; font-weight:600;">12,500 SEK</span>
-          </div>
-          <div id="memoryLastNote" style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.04); padding:0.4rem; border-radius:6px; margin-top:0.2rem; font-style:italic;">
-            Loading stored profile...
-          </div>
+        <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
+          <span>Target Rent:</span>
+          <span id="memorySavedRent" style="color:#fff; font-weight:600;">12,500 SEK</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
+          <span>Saved Criteria:</span>
+          <span id="memoryFactsCount" style="color:var(--accent-light); font-weight:600;">Loading...</span>
+        </div>
+        <div id="memoryLastNote" style="font-size:0.72rem; color:var(--text-subtle); background:rgba(0,0,0,0.2); padding:0.35rem 0.5rem; border-radius:4px; font-style:italic;">
+          Loading stored preferences...
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Interactive Tabbed Workspace -->
-    <div class="panel" style="gap:1rem;">
+    <!-- Right Column: Interactive Workspace (Stage B, Stage C, Stage D) -->
+    <div class="panel" style="gap:1.15rem;">
       <div class="tabs-nav">
-        <button class="tab-btn active" onclick="setTab('apartments')">🏢 Find Available Apartments</button>
-        <button class="tab-btn" onclick="setTab('neighborhoods')">🏘️ Neighborhood Explorer (Solna & More)</button>
-        <button class="tab-btn" onclick="setTab('areas')">📍 Recommended Areas</button>
-        <button class="tab-btn" onclick="setTab('agent')">🤖 Housing Advisory Assistant</button>
-        <button class="tab-btn" onclick="setTab('queues')">📋 Rental Queues & Housing Providers</button>
+        <button class="tab-btn active" onclick="setTab('areas')">📍 Recommended Areas</button>
+        <button class="tab-btn" onclick="setTab('apartments')">🏢 Housing Search</button>
+        <button class="tab-btn" onclick="setTab('neighborhoods')">🏘️ Neighborhood Matrix</button>
+        <button class="tab-btn" onclick="setTab('agent')">🤖 Advisory Assistant</button>
+        <button class="tab-btn" onclick="setTab('queues')">📋 Housing Queues</button>
       </div>
 
-      <!-- TAB 1: APARTMENT SEARCH & DISCOVERY -->
-      <div id="tab-apartments" class="tab-pane active">
-        <div class="transparency-banner">
-          <div style="font-size:1.4rem;">ℹ️</div>
-          <div>
-            <strong>Illustrative Comparison Scenarios & Housing Search Links:</strong>
-            Swedish rental portals (Blocket Bostad, Qasa, Samtrygg) do not provide public unauthenticated APIs. The cards below are clearly marked <em>hypothetical comparison scenarios</em> demonstrating typical local space, layouts, and illustrative commute corridors. They do not represent live vacancies or verified listings. For real available vacancies and queues, use the Housing Search Links below.
-          </div>
+      <!-- STAGE B: RECOMMENDED AREAS -->
+      <div id="tab-areas" class="tab-pane active">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.65rem 0.95rem; border-radius:var(--radius-sm); font-size:0.8rem; border:1px solid var(--border-subtle);">
+          <div id="rankingSummary" style="font-weight:600; color:#fff;">Calculating optimal areas...</div>
+          <div style="color:var(--text-muted); font-size:0.74rem;">Weighted by commute efficiency, regulated SCB rent, and municipal tax</div>
         </div>
 
-        <!-- Apartment Filter Bar -->
-        <div style="background:var(--surface); border:1px solid var(--surface-light); border-radius:10px; padding:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <div class="ranking-grid" id="rankingGrid">
+          <div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
+            Click <strong>"Calculate Budget & Recommended Areas"</strong> to discover suitable areas.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE C: HOUSING SEARCH -->
+      <div id="tab-apartments" class="tab-pane">
+        <!-- Compact Apartment Filter Bar -->
+        <div style="background:var(--surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:0.85rem; display:flex; flex-direction:column; gap:0.65rem;">
           <div class="grid-3">
             <div class="form-group">
               <label>Municipality</label>
@@ -668,14 +741,18 @@
             </div>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">
-            <div id="aptResultsCount" style="font-size:0.85rem; font-weight:700; color:#38bdf8;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div id="aptResultsCount" style="font-size:0.8rem; font-weight:600; color:var(--accent-light);">
               Loading sample properties...
             </div>
-            <button class="btn btn-secondary" style="padding:0.4rem 0.9rem; font-size:0.8rem;" onclick="searchApartments()">
-              🔄 Refresh Listings
+            <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.78rem;" onclick="searchApartments()">
+              Search Rentals
             </button>
           </div>
+        </div>
+
+        <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.4; padding:0 0.25rem;">
+          The examples below are <strong>hypothetical scenarios</strong> demonstrating typical rent levels, room layouts, and scheduled corridor transit times. They are not active vacancies. Use the housing search links below to browse real, current vacancies on Swedish portals.
         </div>
 
         <!-- Apartment Cards Grid -->
@@ -686,44 +763,30 @@
         </div>
 
         <!-- Housing Search Links -->
-        <div style="background:var(--surface); border:1px solid var(--surface-light); border-radius:10px; padding:1.15rem; margin-top:0.5rem;">
-          <div style="font-weight:700; color:#fff; font-size:0.95rem; margin-bottom:0.6rem;">
-            🔗 Housing Search Links
+        <div style="background:var(--surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1rem;">
+          <div style="font-weight:700; color:#fff; font-size:0.9rem; margin-bottom:0.6rem;">
+            Housing Search Links
           </div>
-          <div id="verifiedPortalLinks" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:0.75rem;">
+          <div id="verifiedPortalLinks" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:0.65rem;">
             <!-- Populated via JS -->
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: NEIGHBORHOOD EXPLORER -->
+      <!-- TAB 3: NEIGHBORHOOD EXPLORER -->
       <div id="tab-neighborhoods" class="tab-pane">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.85rem 1rem; border-radius:8px; font-size:0.82rem;">
-          <div>
-            <strong>Solna & Greater Stockholm Neighborhood Matrix:</strong> Verified transit times, stations, and character profiles.
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.75rem 1rem; border-radius:var(--radius-sm); font-size:0.8rem; border:1px solid var(--border-subtle);">
+          <div style="color:var(--text-muted);">
+            Station proximity, transit modes, and neighborhood profiles across Greater Stockholm.
           </div>
-          <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="loadNeighborhoods('Solna')">Solna Only</button>
-            <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="loadNeighborhoods('')">All Areas</button>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn btn-secondary" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="loadNeighborhoods('Solna')">Solna Only</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="loadNeighborhoods('')">All Areas</button>
           </div>
         </div>
 
         <div class="ranking-grid" id="neighborhoodCardsGrid">
           <!-- Populated via JS -->
-        </div>
-      </div>
-
-      <!-- TAB 3: RECOMMENDED AREAS (MUNICIPALITIES) -->
-      <div id="tab-areas" class="tab-pane">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.6rem 1rem; border-radius:8px; font-size:0.82rem;">
-          <div id="rankingSummary">Calculating optimal municipalities...</div>
-          <div>Evaluation Weights: Commute 40% | SCB Rent 35% | Tax Rate 25%</div>
-        </div>
-
-        <div class="ranking-grid" id="rankingGrid">
-          <div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
-            Click <strong>"Run Affordability & Area Analysis"</strong> to generate ranked area recommendations.
-          </div>
         </div>
       </div>
 
@@ -1065,47 +1128,61 @@
 
       if (!listings || listings.length === 0) {
         container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">' +
-          'No representative properties match your current filters. Try relaxing the rent ceiling or room requirements, or use the direct portal search links below.</div>';
+          'No representative properties match your current filters. Try adjusting the rent ceiling or room requirements, or use the housing search links below.</div>';
         return;
       }
 
       listings.forEach(apt => {
         const card = document.createElement('div');
-        card.className = 'a2ui-card';
+        card.className = 'scandi-card';
 
         const utilitiesBadge = apt.utilities_included && apt.utilities_included.length > 0
           ? apt.utilities_included.join(', ')
-          : 'Standard heating & water (confirm with landlord)';
+          : 'Standard heating & water (verify with landlord)';
 
         const depositVal = apt.deposit || (apt.deposit_sek ? (Number(apt.deposit_sek).toLocaleString() + ' SEK (' + (apt.deposit_terms || 'Escrow') + ')') : 'Not specified');
         const availableVal = apt.available_from ? (apt.available_from + ' (' + (apt.lease_duration || 'Flexible') + ')') : 'Contact landlord';
         const transitStop = apt.nearest_transit_stop || 'Nearby public transit';
         const sourceVal = apt.source || 'Public Marketplace';
-        const lastChecked = apt.last_verified_at ? (' • Checked ' + apt.last_verified_at.split('T')[0]) : '';
 
         card.innerHTML = 
-          '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">' +
-            '<span class="sample-tag">Illustrative Comparison Scenario</span>' +
-            '<span class="a2ui-badge-top" style="position:static;">Demonstration Score ' + (apt.match_score || 85) + '/100</span>' +
+          '<div class="scandi-header">' +
+            '<div>' +
+              '<span class="scandi-tag tag-hypothetical">Hypothetical Scenario</span>' +
+              '<div class="scandi-title" style="margin-top:0.35rem;">' + (apt.title || 'Typical Area Layout') + '</div>' +
+              '<div style="font-size:0.78rem; color:var(--text-muted);">' + apt.neighborhood + ', ' + apt.municipality + '</div>' +
+            '</div>' +
+            '<span class="scandi-tag tag-rank">Score ' + (apt.match_score || 85) + '</span>' +
           '</div>' +
-          '<div class="a2ui-card-title">' + (apt.title || 'Hypothetical Area Scenario') + '</div>' +
-          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Generic Area Example') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Hypothetical Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo*</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Size & Rooms:</span><span class="stat-mono">' + apt.rooms + ' rooms (' + apt.size_sqm + ' m²)</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Illustrative Travel Time:</span><span class="stat-mono highlight-green">~' + apt.calculated_commute_minutes + ' mins (unverified)</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute Scope:</span><span style="font-size:0.75rem; color:#94a3b8; text-align:right;">Scheduled rail/bus corridor only.<br>Not a door-to-door verified estimate.</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Nearest Stop:</span><span style="font-size:0.78rem; text-align:right;">' + transitStop + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Scenario Model:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Hypothetical sublet scenario') + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Sample Deposit:</span><span style="font-size:0.78rem;">' + depositVal + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Utilities (Typical):</span><span style="font-size:0.75rem; color:#cbd5e1; text-align:right;">' + utilitiesBadge + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Term Assumption:</span><span style="font-size:0.78rem;">' + availableVal + '</span></div>' +
-          '<div style="background:rgba(2,132,199,0.06); padding:0.5rem; border-radius:6px; font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">' +
-            '💡 <strong>Demonstration Note:</strong> ' + (apt.match_explanation || 'Illustrative sample layout for area comparison.') +
-            '<div style="font-size:0.7rem; color:#f59e0b; margin-top:0.25rem;">⚠️ Fictional scenario for comparison modeling only. Not an actual vacant apartment. Use search links below for real listings.</div>' +
+          
+          '<div class="scandi-metric-row">' +
+            '<span style="color:var(--text-muted);">Indicative Rent:</span>' +
+            '<span class="stat-mono highlight-prudent">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo</span>' +
           '</div>' +
-          '<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.4rem; font-size:0.72rem; color:var(--text-muted);">' +
-            '<span>Market Reference: ' + sourceVal + '</span>' +
-            '<a href="' + (apt.source_url || '#') + '" target="_blank" class="btn" style="padding:0.35rem 0.75rem; font-size:0.75rem;">Search Portal ↗</a>' +
+          '<div class="scandi-metric-row">' +
+            '<span style="color:var(--text-muted);">Layout:</span>' +
+            '<span class="stat-mono">' + apt.rooms + ' rooms (' + apt.size_sqm + ' m²)</span>' +
+          '</div>' +
+          '<div class="scandi-metric-row">' +
+            '<span style="color:var(--text-muted);">Corridor Transit:</span>' +
+            '<span class="stat-mono highlight-leftover">~' + apt.calculated_commute_minutes + ' min</span>' +
+          '</div>' +
+
+          '<details class="card-details">' +
+            '<summary>View details & assumptions ▾</summary>' +
+            '<div class="card-details-body">' +
+              '<div><strong>Nearest Station:</strong> ' + transitStop + '</div>' +
+              '<div><strong>Deposit Assumption:</strong> ' + depositVal + '</div>' +
+              '<div><strong>Utilities (Typical):</strong> ' + utilitiesBadge + '</div>' +
+              '<div><strong>Tenancy Type:</strong> ' + (apt.housing_type || 'Sublet (Andrahand)') + ' (' + availableVal + ')</div>' +
+              '<div><strong>Scoring Breakdown:</strong> ' + (apt.match_explanation || '50% Rent headroom, 30% commute corridor, 20% size ratio.') + '</div>' +
+              '<div style="color:var(--text-subtle); font-size:0.7rem; margin-top:0.2rem;">*Corridor transit reflects scheduled line and access walk. Excludes platform waits and transfer buffers.</div>' +
+            '</div>' +
+          '</details>' +
+
+          '<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">' +
+            '<span style="font-size:0.72rem; color:var(--text-subtle);">Ref: ' + sourceVal + '</span>' +
+            '<a href="' + (apt.source_url || 'https://bostad.blocket.se') + '" target="_blank" class="btn btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.75rem;">Open housing portal ↗</a>' +
           '</div>';
 
         container.appendChild(card);
@@ -1118,9 +1195,9 @@
       links.forEach(l => {
         const item = document.createElement('div');
         item.style.background = 'var(--card-bg)';
-        item.style.border = '1px solid var(--border)';
-        item.style.borderRadius = '8px';
-        item.style.padding = '0.75rem';
+        item.style.border = '1px solid var(--border-subtle)';
+        item.style.borderRadius = 'var(--radius-sm)';
+        item.style.padding = '0.75rem 0.85rem';
         item.style.display = 'flex';
         item.style.flexDirection = 'column';
         item.style.justifyContent = 'space-between';
@@ -1128,11 +1205,11 @@
 
         item.innerHTML = 
           '<div>' +
-            '<div style="font-weight:700; color:#fff; font-size:0.85rem;">' + l.service + '</div>' +
-            '<div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">' + (l.description || '') + '</div>' +
+            '<div style="font-weight:600; color:#fff; font-size:0.83rem;">' + l.service + '</div>' +
+            '<div style="font-size:0.73rem; color:var(--text-muted); margin-top:0.15rem;">' + (l.description || '') + '</div>' +
           '</div>' +
-          '<a href="' + l.url + '" target="_blank" class="btn btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem; align-self:flex-start;">' +
-            'Open Live Portal ↗' +
+          '<a href="' + l.url + '" target="_blank" class="btn btn-secondary" style="font-size:0.74rem; padding:0.3rem 0.6rem; align-self:flex-start;">' +
+            'Open housing portal ↗' +
           '</a>';
         container.appendChild(item);
       });
@@ -1152,22 +1229,26 @@
 
         data.neighborhoods.forEach(nb => {
           const card = document.createElement('div');
-          card.className = 'a2ui-card';
+          card.className = 'scandi-card';
 
           const vibePills = (nb.vibe_tags || []).map(t => '<span class="a2ui-pill">' + t + '</span>').join(' ');
           const amenities = (nb.amenities || []).join(', ');
 
           card.innerHTML = 
-            '<div class="a2ui-badge-top">' + nb.commute_minutes + ' min commute</div>' +
-            '<div class="a2ui-card-title">' + nb.neighborhood + ' (' + nb.municipality + ')</div>' +
-            '<div style="font-size:0.8rem; color:#cbd5e1; line-height:1.4;">' + nb.character + '</div>' +
-            '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Primary Station:</span><span class="stat-mono">' + nb.primary_transit_station + '</span></div>' +
-            '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Modes:</span><span style="font-size:0.75rem;">' + nb.transit_modes.join(', ') + '</span></div>' +
-            '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Character:</span><span style="font-size:0.75rem;">' + nb.typical_housing_stock + '</span></div>' +
-            '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Local Amenities:</span><span style="font-size:0.75rem; color:#cbd5e1;">' + amenities + '</span></div>' +
+            '<div class="scandi-header">' +
+              '<div>' +
+                '<span class="scandi-tag tag-verified">' + nb.municipality + '</span>' +
+                '<div class="scandi-title" style="margin-top:0.3rem;">' + nb.neighborhood + '</div>' +
+              '</div>' +
+              '<span class="scandi-tag tag-rank">' + nb.commute_minutes + ' min</span>' +
+            '</div>' +
+            '<div style="font-size:0.78rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.4rem;">' + nb.character + '</div>' +
+            '<div class="scandi-metric-row"><span style="color:var(--text-muted);">Transit Station:</span><span class="stat-mono">' + nb.primary_transit_station + '</span></div>' +
+            '<div class="scandi-metric-row"><span style="color:var(--text-muted);">Transit Modes:</span><span style="font-size:0.75rem;">' + nb.transit_modes.join(', ') + '</span></div>' +
+            '<div class="scandi-metric-row"><span style="color:var(--text-muted);">Housing Stock:</span><span style="font-size:0.75rem;">' + nb.typical_housing_stock + '</span></div>' +
             '<div class="a2ui-tag-row">' + vibePills + '</div>' +
-            '<button class="btn btn-secondary" style="padding:0.4rem; font-size:0.78rem; margin-top:0.4rem;" onclick="filterApartmentsByNeighborhood(\'' + nb.neighborhood + '\')">' +
-              'Show Apartments in ' + nb.neighborhood + ' →' +
+            '<button class="btn btn-secondary" style="padding:0.35rem; font-size:0.75rem; margin-top:0.3rem;" onclick="filterApartmentsByNeighborhood(\'' + nb.neighborhood + '\')">' +
+              'Show apartments in ' + nb.neighborhood + ' →' +
             '</button>';
 
           container.appendChild(card);
@@ -1188,13 +1269,13 @@
       container.innerHTML = '';
 
       if (!areas || areas.length === 0) {
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem;">No viable areas found. Try increasing the maximum commute time.</div>';
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No viable areas found. Try increasing the maximum commute time.</div>';
         return;
       }
 
       areas.forEach((area, index) => {
         const card = document.createElement('div');
-        card.className = 'a2ui-card';
+        card.className = 'scandi-card';
         
         const areaName = area.area_name || area.origin_area || 'Stockholm Area';
         const rankScore = area.rank_score || area.overall_score || 75;
@@ -1206,24 +1287,36 @@
         const rent1bed = normRents['1bed_55sqm_sek'] ? Number(normRents['1bed_55sqm_sek']).toLocaleString() + ' SEK/mo' : '7,800 SEK/mo';
         const taxRate = area.scb_stats?.tax_rate_percent || area.scb_stats?.municipal_tax_rate_percent || '30.5';
         const tax = taxRate + '%';
-        const assessment = area.affordability_assessment || 'Affordable with current income';
+        const assessment = area.affordability_assessment || 'Within prudent budget';
         const corridorNotes = area.corridor_notes || (commute + ' mins direct connection to workplace hub');
 
         card.innerHTML = 
-          '<div class="a2ui-badge-top">#' + (index + 1) + ' (' + rankScore + '/100)</div>' +
-          '<div class="a2ui-card-title">' + areaName + '</div>' +
-          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + muni + ' • ' + transit + '</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Travel Time:</span><span class="stat-mono highlight-green">' + commute + ' mins to hub</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">SCB Statistical Rent (55 m²):</span><span class="stat-mono">' + rent1bed + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Municipal Tax Rate:</span><span class="stat-mono">' + tax + '</span></div>' +
-          '<div style="font-size:0.75rem; color:#94a3b8; margin-top:0.3rem; line-height:1.4;">' +
-            'ℹ️ <strong>Area Context:</strong> ' + corridorNotes + '<br>' +
-            '<span style="font-size:0.7rem; color:#64748b;">*SCB rent is a regulated statistical average across all apartments. Individual private asking rents vary based on age, standard, and sublet terms.</span>' +
+          '<div class="scandi-header">' +
+            '<div>' +
+              '<span class="scandi-tag tag-verified">' + muni + '</span>' +
+              '<div class="scandi-title" style="margin-top:0.3rem;">' + areaName + '</div>' +
+              '<div style="font-size:0.75rem; color:var(--text-subtle);">' + transit + ' corridor</div>' +
+            '</div>' +
+            '<span class="scandi-tag tag-rank">#' + (index + 1) + ' (' + rankScore + ')</span>' +
           '</div>' +
-          '<div class="a2ui-tag-row"><span class="a2ui-pill">Overall Score: ' + rankScore + '/100</span><span class="a2ui-pill">' + assessment + '</span></div>' +
-          '<button class="btn btn-secondary" style="padding:0.4rem; font-size:0.78rem; margin-top:0.4rem;" onclick="filterApartmentsByMunicipality(\'' + muni + '\')">' +
-            'Explore Apartments in ' + muni + ' →' +
+
+          '<div class="scandi-metric-row"><span style="color:var(--text-muted);">Transit Travel Time:</span><span class="stat-mono highlight-leftover">' + commute + ' mins</span></div>' +
+          '<div class="scandi-metric-row"><span style="color:var(--text-muted);">SCB Statistical Rent:</span><span class="stat-mono highlight-prudent">' + rent1bed + '</span></div>' +
+          '<div class="scandi-metric-row"><span style="color:var(--text-muted);">Municipal Tax Rate:</span><span class="stat-mono">' + tax + '</span></div>' +
+
+          '<details class="card-details">' +
+            '<summary>Area details & context ▾</summary>' +
+            '<div class="card-details-body">' +
+              '<div><strong>Corridor notes:</strong> ' + corridorNotes + '</div>' +
+              '<div><strong>Affordability:</strong> ' + assessment + '</div>' +
+              '<div style="color:var(--text-subtle); font-size:0.7rem; margin-top:0.2rem;">*SCB rent is a regulated municipal statistical average across all apartments. Private market asking rents vary by contract type.</div>' +
+            '</div>' +
+          '</details>' +
+
+          '<button class="btn btn-secondary" style="padding:0.35rem; font-size:0.75rem; margin-top:0.3rem;" onclick="filterApartmentsByMunicipality(\'' + muni + '\')">' +
+            'Find housing in ' + muni + ' →' +
           '</button>';
+
         container.appendChild(card);
       });
     }
