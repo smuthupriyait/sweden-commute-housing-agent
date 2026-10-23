@@ -7,7 +7,8 @@ import os
 import json
 from typing import Dict, Any, Optional
 
-MEMORY_STORE_FILE = "/config/Desktop/BuildWithGemini/user_memories.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEMORY_STORE_FILE = os.environ.get("MEMORY_STORE_FILE", os.path.join(BASE_DIR, "user_memories.json"))
 
 DEFAULT_PROFILE = {
     "workplace": "Stockholm Central / City",
