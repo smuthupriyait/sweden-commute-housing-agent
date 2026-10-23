@@ -65,51 +65,62 @@
     .brand-title { font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     .header-tagline { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* Minimal Scandinavian Hero */
+    /* Panoramic Scandinavian Hero Banner */
     .hero-container {
+      position: relative;
       border-bottom: 1px solid var(--border-subtle);
-      padding: 1.75rem 2rem 1.5rem;
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(11, 15, 25, 0.95) 100%);
+      background-image: linear-gradient(
+        180deg, 
+        rgba(11, 15, 25, 0.72) 0%, 
+        rgba(11, 15, 25, 0.88) 60%, 
+        rgba(11, 15, 25, 0.98) 100%
+      ), url('/images/hero_banner.png');
+      background-size: cover;
+      background-position: center 38%;
+      background-repeat: no-repeat;
+      padding: 3.25rem 2rem 2.75rem;
     }
     .hero-inner {
       max-width: 1440px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 2;
     }
     .hero-title {
-      font-size: 1.85rem;
+      font-size: 2.15rem;
       font-weight: 700;
       color: #ffffff;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
       margin-bottom: 0.35rem;
     }
     .hero-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 680px;
-      line-height: 1.45;
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 780px;
+      line-height: 1.55;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
     }
-    .hero-image-wrap {
-      width: 280px;
-      height: 110px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+    .hero-badges-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.65rem;
+    }
+    .hero-feature-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      flex-shrink: 0;
-    }
-    .hero-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    @media (max-width: 860px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-image-wrap { display: none; }
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.76rem;
+      color: #e2e8f0;
     }
     .stage-indicator {
       display: flex;
@@ -536,14 +547,15 @@
 
   <div class="hero-container">
     <div class="hero-inner">
-      <div>
-        <h1 class="hero-title">Discover where to live near your workplace</h1>
-        <p class="hero-desc">
-          Understand what rent you can afford, discover suitable areas within your commute corridor, and find where to search for housing in Sweden.
-        </p>
-      </div>
-      <div class="hero-image-wrap">
-        <img src="/images/hero_banner.png" alt="Stockholm Transit & Skyline">
+      <h1 class="hero-title">Discover where to live near your workplace</h1>
+      <p class="hero-desc">
+        Understand what rent you can afford, discover suitable areas within your commute corridor, and find where to search for housing in Sweden.
+      </p>
+      <div class="hero-badges-row">
+        <span class="hero-feature-badge">🚆 SL Commuter Rail & Metro Corridors</span>
+        <span class="hero-feature-badge">📊 SCB Regulated Municipal Statistics</span>
+        <span class="hero-feature-badge">💡 Transparent Planning Heuristics</span>
+        <span class="hero-feature-badge">🛡️ Municipal Queue Access</span>
       </div>
     </div>
   </div>
