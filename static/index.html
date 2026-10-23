@@ -514,7 +514,7 @@
       <!-- Affordability Breakdown -->
       <div class="budget-display">
         <div style="font-weight:700; color:#fff; font-size:0.9rem; border-bottom:1px solid #1f293d; padding-bottom:0.35rem;">
-          Affordability & Disposable Headroom ('Kvar att leva på')
+          Planning Heuristic Breakdown ('Kvar att leva på')
         </div>
         <div class="budget-row">
           <span>Monthly Net Take-Home Income:</span>
@@ -525,11 +525,11 @@
           <span class="stat-mono" id="resFixedExp">11,000 SEK</span>
         </div>
         <div class="budget-row">
-          <span>Recommended Prudent Rent:</span>
+          <span>Recommended Prudent Rent (Heuristic Guideline):</span>
           <span class="stat-mono highlight-yellow" id="resPrudentRent">12,540 SEK/mo</span>
         </div>
         <div class="budget-row">
-          <span>Maximum Suggested Rent:</span>
+          <span>Maximum Suggested Rent (Upper Heuristic Bound):</span>
           <span class="stat-mono" id="resMaxRent">15,960 SEK/mo</span>
         </div>
         <div class="budget-row">
@@ -545,19 +545,19 @@
           <span class="stat-mono highlight-green" id="resLeftover">8,760 SEK</span>
         </div>
         <div class="budget-row">
-          <span>Konsumentverket Standard Reference:</span>
+          <span>Konsumentverket General Reference:</span>
           <span class="stat-mono" id="resBaseline">8,500 SEK</span>
         </div>
         <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.4rem; line-height:1.45;" id="resExplanation">
           Calculating...
         </div>
         <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.35rem; line-height:1.4; border-top:1px dashed #334155; padding-top:0.35rem;" id="resMaxExplanation">
-          Maximum suggested rent is an upper boundary (~42% of take-home pay) and should not be viewed as universally affordable.
+          Maximum suggested rent is an upper heuristic boundary (~42% of take-home pay) and should not be viewed as universally affordable.
         </div>
       </div>
 
       <div class="disclaimer-box">
-        ⚠️ <strong>Cost of Living Notice:</strong> The remaining disposable income above must cover all everyday essentials: food/groceries (~4,000 SEK/person), SL public transport (1,020 SEK/mo), household electricity & district heating, and home insurance (<em>hemförsäkring</em>).
+        ⚠️ <strong>Planning Heuristic & Benchmark Notice:</strong> The figures above reflect customizable planning heuristics, not an official credit check or legal affordability standard. The 8,500 SEK reference is a general national living benchmark (Konsumentverket), not a personalized calculation. Remaining disposable income must cover food/groceries (~4,000 SEK/person), SL public transport (1,020 SEK/mo), household utilities, and home insurance (<em>hemförsäkring</em>).
       </div>
 
       <!-- Saved Preferences Card -->
@@ -569,7 +569,10 @@
             <button class="btn btn-danger" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="clearMemoryProfile()">Clear</button>
           </div>
         </div>
-        <div class="memory-list" id="memoryList">
+        <div style="font-size:0.73rem; color:#94a3b8; margin-top:0.2rem; line-height:1.35;">
+          Preferences are stored locally on your server session (in <code>user_memories.json</code>). No external tracking or account syncing is active. You can edit criteria or wipe the stored session at any time below.
+        </div>
+        <div class="memory-list" id="memoryList" style="margin-top:0.4rem;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <span style="color:var(--text-muted);">Saved criteria:</span>
             <span id="memoryFactsCount" style="color:#38bdf8; font-weight:600;">Loading...</span>
@@ -604,8 +607,8 @@
         <div class="transparency-banner">
           <div style="font-size:1.4rem;">ℹ️</div>
           <div>
-            <strong>Apartment Discovery & Direct Rental Links:</strong>
-            Swedish rental portals (Blocket Bostad, Qasa, Samtrygg) do not provide public unauthenticated REST APIs. Below are curated representative sample properties illustrating typical rents, layouts, and transit connections in these neighborhoods, alongside direct links to live application portals and official queues.
+            <strong>Illustrative Comparison Scenarios & Housing Search Links:</strong>
+            Swedish rental portals (Blocket Bostad, Qasa, Samtrygg) do not provide public unauthenticated APIs. The cards below are clearly marked <em>hypothetical comparison scenarios</em> demonstrating typical local space, layouts, and illustrative commute corridors. They do not represent live vacancies or verified listings. For real available vacancies and queues, use the Housing Search Links below.
           </div>
         </div>
 
@@ -1082,23 +1085,23 @@
 
         card.innerHTML = 
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">' +
-            '<span class="sample-tag">Curated Sample Property</span>' +
-            '<span class="a2ui-badge-top" style="position:static;">Illustrative Match ' + (apt.match_score || 85) + '/100</span>' +
+            '<span class="sample-tag">Illustrative Comparison Scenario</span>' +
+            '<span class="a2ui-badge-top" style="position:static;">Demonstration Score ' + (apt.match_score || 85) + '/100</span>' +
           '</div>' +
-          '<div class="a2ui-card-title">' + (apt.title || 'Sample Apartment') + '</div>' +
-          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Representative Area') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Sample Asking Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo*</span></div>' +
+          '<div class="a2ui-card-title">' + (apt.title || 'Hypothetical Area Scenario') + '</div>' +
+          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Generic Area Example') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Hypothetical Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo*</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Size & Rooms:</span><span class="stat-mono">' + apt.rooms + ' rooms (' + apt.size_sqm + ' m²)</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Estimated Transit & Walk:</span><span class="stat-mono highlight-green">' + apt.calculated_commute_minutes + ' mins to workplace</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute Scope:</span><span style="font-size:0.75rem; color:#94a3b8; text-align:right;">Includes transit line + station walk.<br>Excludes door-to-door wait & transfers.</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Illustrative Travel Time:</span><span class="stat-mono highlight-green">~' + apt.calculated_commute_minutes + ' mins (unverified)</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute Scope:</span><span style="font-size:0.75rem; color:#94a3b8; text-align:right;">Scheduled rail/bus corridor only.<br>Not a door-to-door verified estimate.</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Nearest Stop:</span><span style="font-size:0.78rem; text-align:right;">' + transitStop + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Type:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Illustrative sublet terms') + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Scenario Model:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Hypothetical sublet scenario') + '</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Sample Deposit:</span><span style="font-size:0.78rem;">' + depositVal + '</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Utilities (Typical):</span><span style="font-size:0.75rem; color:#cbd5e1; text-align:right;">' + utilitiesBadge + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Move-in / Lease:</span><span style="font-size:0.78rem;">' + availableVal + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Term Assumption:</span><span style="font-size:0.78rem;">' + availableVal + '</span></div>' +
           '<div style="background:rgba(2,132,199,0.06); padding:0.5rem; border-radius:6px; font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">' +
-            '💡 <strong>Evaluation Note:</strong> ' + (apt.match_explanation || 'Illustrative sample layout for area comparison.') +
-            '<div style="font-size:0.7rem; color:#f59e0b; margin-top:0.25rem;">⚠️ Sample listing for comparison. Values are not real-time listing facts. Use search portals below for live applications.</div>' +
+            '💡 <strong>Demonstration Note:</strong> ' + (apt.match_explanation || 'Illustrative sample layout for area comparison.') +
+            '<div style="font-size:0.7rem; color:#f59e0b; margin-top:0.25rem;">⚠️ Fictional scenario for comparison modeling only. Not an actual vacant apartment. Use search links below for real listings.</div>' +
           '</div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.4rem; font-size:0.72rem; color:var(--text-muted);">' +
             '<span>Market Reference: ' + sourceVal + '</span>' +

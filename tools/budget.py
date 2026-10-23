@@ -90,25 +90,25 @@ def calculate_rent_budget(
         health_status = "deficit"
 
     explanation = (
-        f"With a monthly net income of {net_income:,.0f} SEK and fixed obligations of {fixed_expenses:,.0f} SEK, "
-        f"recommended rent is {affordable_prudent:,.0f} SEK/month (approx. 33% of take-home pay). "
+        f"Planning Heuristic Breakdown: With a monthly net income of {net_income:,.0f} SEK and fixed obligations of {fixed_expenses:,.0f} SEK, "
+        f"the recommended prudent rent guideline is {affordable_prudent:,.0f} SEK/month (approx. 33% of take-home pay, subject to remaining capacity). "
         f"This leaves {remaining_before_savings:,.0f} SEK for all other monthly living costs. "
-        f"Allocating a {buffer_pct:.0f}% emergency reserve ({buffer_amount:,.0f} SEK) leaves {remaining_after_savings:,.0f} SEK "
+        f"Setting aside a {buffer_pct:.0f}% emergency reserve ({buffer_amount:,.0f} SEK) leaves {remaining_after_savings:,.0f} SEK "
         f"as net disposable headroom ('Kvar att leva på'). "
         f"This remaining amount must cover groceries (~4,000 SEK), SL public transit (1,020 SEK), utilities, and insurance."
     )
 
     max_rent_explanation = (
         f"Maximum suggested rent of {affordable_max:,.0f} SEK represents an upper boundary (~42% of take-home pay) "
-        f"under the assumption that discretionary spending and savings are minimized. It is not universally affordable "
-        f"and increases vulnerability to interest rate hikes, inflation, and unexpected expenses."
+        f"under the assumption that discretionary spending and savings are minimized. This is a configurable planning heuristic, "
+        f"not an official affordability standard. It increases vulnerability to rate hikes and unforeseen costs."
     )
 
     disclaimer = (
-        "Cost of Living Guidance: Remaining disposable income must cover food & groceries (~4,000 SEK/adult), "
+        "Cost of Living Guidance & Reference Notice: Remaining disposable income must cover food & groceries (~4,000 SEK/adult), "
         "SL public transport (1,020 SEK/month), home insurance (hemförsäkring ~150-300 SEK), household electricity, "
-        "and mobile/broadband. Furthermore, landlords in Sweden often enforce strict income requirements "
-        "(typically demanding gross income equal to 3x monthly rent)."
+        "and mobile/broadband. The reference figure (8,500 SEK/adult) reflects general Swedish benchmark guidance (Konsumentverket baseline) "
+        "for typical individual living costs, not a personalized official standard. Landlords in Sweden may also enforce specific gross-income requirements."
     )
 
     return {
@@ -130,5 +130,6 @@ def calculate_rent_budget(
         "explanation": explanation,
         "calculation_explanation": explanation,
         "max_rent_explanation": max_rent_explanation,
-        "eligibility_disclaimer": disclaimer
+        "eligibility_disclaimer": disclaimer,
+        "is_planning_heuristic": True
     }
