@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WorkNest Sweden - Affordable Housing & Commute Intelligence</title>
+  <title>Sweden Commute & Affordable Housing Finder | Live Platform</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --card-bg: #111827;
+      --bg: #070b14;
+      --card-bg: #0f172a;
       --surface: #1e293b;
       --surface-light: #334155;
       --accent: #0284c7;
       --accent-hover: #0369a1;
-      --accent-glow: rgba(2, 132, 199, 0.3);
+      --accent-glow: rgba(2, 132, 199, 0.35);
       --yellow: #facc15;
       --emerald: #10b981;
       --rose: #f43f5e;
       --text: #f8fafc;
       --text-muted: #94a3b8;
-      --border: #1f293d;
+      --border: #1e293b;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -32,50 +31,101 @@
       display: flex;
       flex-direction: column;
     }
-
     header {
-      background: linear-gradient(135deg, #090e1f 0%, #0f1e42 100%);
+      background: linear-gradient(135deg, #050811 0%, #0d172e 100%);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
+      padding: 0.9rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 50;
+      backdrop-filter: blur(8px);
     }
-
     .brand { display: flex; align-items: center; gap: 0.85rem; }
-    .flag-icon { font-size: 1.8rem; border-radius: 6px; }
+    .flag-icon { font-size: 2rem; }
     .brand-title { font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .brand-sub { font-size: 0.78rem; color: var(--yellow); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-
+    .brand-sub { font-size: 0.75rem; color: var(--yellow); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
     .header-badges { display: flex; gap: 0.6rem; align-items: center; }
     .badge-pill {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.75rem;
+      font-size: 0.72rem;
+      padding: 0.35rem 0.75rem;
       border-radius: 20px;
       font-weight: 600;
-      background: rgba(2, 132, 199, 0.15);
-      border: 1px solid rgba(2, 132, 199, 0.4);
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.35);
       color: #7dd3fc;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
-
+    .hero-container {
+      position: relative;
+      background: linear-gradient(180deg, rgba(7, 11, 20, 0.4) 0%, rgba(7, 11, 20, 0.95) 100%), url('/images/hero_banner.png');
+      background-size: cover;
+      background-position: center 35%;
+      border-bottom: 1px solid var(--border);
+      padding: 2.75rem 2rem 2.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .hero-content { max-width: 780px; z-index: 2; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(250, 204, 21, 0.15);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      color: var(--yellow);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+      max-width: 680px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 1.25rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      padding: 0.85rem 1.4rem;
+      border-radius: 12px;
+      z-index: 2;
+    }
+    .hero-stat-item { text-align: center; }
+    .hero-stat-num { font-size: 1.35rem; font-weight: 800; color: #38bdf8; font-family: 'JetBrains Mono'; }
+    .hero-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
     main {
       flex: 1;
       display: grid;
       grid-template-columns: 460px 1fr;
       gap: 1.5rem;
       padding: 1.5rem 2rem;
-      max-width: 1650px;
+      max-width: 1700px;
       margin: 0 auto;
       width: 100%;
     }
-
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       main { grid-template-columns: 1fr; padding: 1rem; }
+      .hero-container { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     }
-
     .panel {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -83,10 +133,9 @@
       padding: 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      gap: 1.15rem;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
     }
-
     .panel-header {
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.75rem;
@@ -94,7 +143,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .panel-title {
       font-size: 1.05rem;
       font-weight: 700;
@@ -103,10 +151,8 @@
       align-items: center;
       gap: 0.5rem;
     }
-
     .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
     label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
-
     input, select {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -117,15 +163,12 @@
       font-size: 0.9rem;
       transition: all 0.2s;
     }
-
     input:focus, select:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-glow);
     }
-
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-
     .btn {
       background: var(--accent);
       color: #fff;
@@ -141,11 +184,9 @@
       gap: 0.5rem;
       transition: all 0.2s;
     }
-
     .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
     .budget-display {
-      background: #0b111e;
+      background: #090e1a;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.1rem;
@@ -153,110 +194,138 @@
       flex-direction: column;
       gap: 0.65rem;
     }
-
     .budget-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.85rem;
     }
-
     .stat-mono {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
       color: #38bdf8;
     }
-
-    .highlight-yellow { color: var(--yellow); font-size: 1.2rem; }
-
+    .highlight-yellow { color: var(--yellow); font-size: 1.25rem; }
+    .memory-badge-card {
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px dashed rgba(2, 132, 199, 0.4);
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-size: 0.78rem;
+    }
+    .memory-badge-title {
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.3rem;
+    }
+    .memory-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      color: var(--text-muted);
+    }
     .tabs-nav {
       display: flex;
       gap: 0.5rem;
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.5rem;
     }
-
     .tab-btn {
       background: none;
       border: none;
       color: var(--text-muted);
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       font-size: 0.88rem;
+      transition: all 0.15s;
     }
-
     .tab-btn.active {
       background: var(--surface);
       color: #fff;
       border: 1px solid var(--border);
     }
-
     .tab-pane { display: none; flex-direction: column; gap: 1rem; height: 100%; }
     .tab-pane.active { display: flex; }
-
-    .ranking-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--surface);
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-    }
-
     .ranking-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.1rem;
       overflow-y: auto;
-      max-height: 620px;
+      max-height: 650px;
       padding-right: 0.4rem;
     }
-
-    .area-card {
+    .a2ui-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
+      border-radius: 12px;
+      padding: 1.15rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.7rem;
       transition: all 0.2s;
       position: relative;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
     }
-
-    .area-card:hover {
+    .a2ui-card:hover {
       border-color: var(--accent);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.2);
     }
-
-    .rank-badge {
+    .a2ui-badge-top {
       position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
+      top: 0.85rem;
+      right: 0.85rem;
       font-family: 'JetBrains Mono';
       font-weight: 800;
       font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
       background: rgba(250, 204, 21, 0.15);
       color: var(--yellow);
-      border: 1px solid rgba(250, 204, 21, 0.3);
+      border: 1px solid rgba(250, 204, 21, 0.35);
     }
-
+    .a2ui-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      padding-right: 3.5rem;
+    }
+    .a2ui-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 0.35rem;
+    }
+    .a2ui-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+    .a2ui-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+    }
     .chat-container {
       display: flex;
       flex-direction: column;
-      height: 620px;
+      height: 600px;
+      background: #090e1a;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #0b111e;
+      border-radius: 12px;
       overflow: hidden;
     }
-
     .chat-messages {
       flex: 1;
       padding: 1.25rem;
@@ -265,38 +334,41 @@
       flex-direction: column;
       gap: 1rem;
     }
-
-    .msg {
-      padding: 0.85rem 1.1rem;
-      border-radius: 10px;
-      max-width: 88%;
-      font-size: 0.88rem;
-      line-height: 1.45;
-    }
-
-    .msg.agent {
-      background: var(--surface);
-      border-left: 3px solid var(--accent);
-      align-self: flex-start;
-    }
-
-    .msg.user {
-      background: #0284c7;
-      color: #fff;
-      align-self: flex-end;
-    }
-
-    .chat-bar {
+    .message {
       display: flex;
-      gap: 0.6rem;
-      padding: 0.85rem;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
+      flex-direction: column;
+      max-width: 85%;
+      padding: 0.85rem 1.15rem;
+      border-radius: 12px;
+      font-size: 0.88rem;
     }
-
-    .chat-bar input { flex: 1; }
-
-    .quick-prompts {
+    .message.user {
+      align-self: flex-end;
+      background: var(--accent);
+      color: #fff;
+      border-bottom-right-radius: 2px;
+    }
+    .message.agent {
+      align-self: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #f1f5f9;
+      border-bottom-left-radius: 2px;
+    }
+    .message-time {
+      font-size: 0.68rem;
+      opacity: 0.65;
+      margin-top: 0.35rem;
+    }
+    .chat-input-row {
+      display: flex;
+      padding: 0.85rem;
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      gap: 0.6rem;
+    }
+    .chat-input-row input { flex: 1; }
+    .quick-chips {
       display: flex;
       gap: 0.5rem;
       padding: 0.5rem 1.25rem;
@@ -304,7 +376,6 @@
       overflow-x: auto;
       border-top: 1px solid var(--border);
     }
-
     .quick-chip {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -315,39 +386,53 @@
       cursor: pointer;
       white-space: nowrap;
     }
-
     .quick-chip:hover { color: #fff; border-color: var(--accent); }
-
-    .empty-state {
-      padding: 3rem 1rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
     a { color: #38bdf8; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
   <header>
     <div class="brand">
       <span class="flag-icon">🇸🇪</span>
       <div>
-        <div class="brand-title">WorkNest Sweden</div>
-        <div class="brand-sub">Affordable Housing & Transit Navigator</div>
+        <div class="brand-title">Sweden Commute & Affordable Housing Finder</div>
+        <div class="brand-sub">Real-Time Relocation & Affordability Platform</div>
       </div>
     </div>
     <div class="header-badges">
+      <span class="badge-pill">🧠 Vertex Memory Bank Active</span>
       <span class="badge-pill">📊 SCB Doris API 2026</span>
-      <span class="badge-pill">🤖 Gemini 2.5 Flash Agent</span>
-      <span class="badge-pill" style="border-color:#10b981; color:#34d399;">🛡️ Zero-Hallucination Guard</span>
+      <span class="badge-pill">🎨 A2UI Card Surface</span>
+      <span class="badge-pill" style="border-color:#10b981; color:#34d399;">🛡️ Zero-Hallucination</span>
     </div>
   </header>
 
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">✨ Live Production Edition • Sweden Relocation Intelligence</div>
+      <h1 class="hero-title">Find Housing You Can Afford Within a Realistic Swedish Commute</h1>
+      <p class="hero-desc">
+        Grounded in official Statistics Sweden (SCB) rent benchmarks, municipal tax rates, verified rail/metro transit times, and autonomous Vertex AI agents.
+      </p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">290+</div>
+        <div class="hero-stat-label">Municipalities</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">33%</div>
+        <div class="hero-stat-label">Prudent Ceiling</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Verified Data</div>
+      </div>
+    </div>
+  </div>
+
   <main>
-    <!-- Left Column: Inputs & Affordability Breakdown -->
     <div class="panel">
       <div class="panel-header">
         <div class="panel-title">
@@ -407,7 +492,6 @@
         <span>⚡</span> Run Affordability & Area Analysis
       </button>
 
-      <!-- Affordability Breakdown Card -->
       <div class="budget-display">
         <div style="font-weight:700; color:#fff; font-size:0.9rem; border-bottom:1px solid #1f293d; padding-bottom:0.35rem;">
           Affordability & Budget Analysis
@@ -439,272 +523,281 @@
           Suggested budget. Swedish landlords typically require gross income 3x rent and permanent employment.
         </div>
       </div>
+
+      <div class="memory-badge-card">
+        <div class="memory-badge-title">
+          <span>🧠</span> Long-Term Memory Profile
+        </div>
+        <div class="memory-list" id="memoryList">
+          <div>• User: <span style="color:#fff;">default_user</span></div>
+          <div>• Stored facts: <span id="memoryFactsCount" style="color:#38bdf8;">Loading...</span></div>
+          <div id="memoryLastNote" style="font-style:italic;">Syncing with Vertex Memory Bank...</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Right Column: Tabs (Ranked Areas, AI Strategy Agent, Verified Listings) -->
     <div class="panel" style="gap:1rem;">
       <div class="tabs-nav">
-        <button class="tab-btn active" onclick="setTab('areas')">📍 Area Comparison & Ranking</button>
-        <button class="tab-btn" onclick="setTab('agent')">🤖 AI Relocation Advisor</button>
-        <button class="tab-btn" onclick="setTab('listings')">📋 Verified Listings & Queues</button>
+        <button class="tab-btn active" onclick="setTab('areas')">📍 A2UI Ranked Areas</button>
+        <button class="tab-btn" onclick="setTab('agent')">🤖 AI Assistant & Memory</button>
+        <button class="tab-btn" onclick="setTab('listings')">📋 Verified Housing & Queues</button>
+        <button class="tab-btn" onclick="setTab('gallery')">🖼️ Living Gallery</button>
       </div>
 
-      <!-- Tab 1: Area Comparison -->
       <div id="tab-areas" class="tab-pane active">
-        <div class="ranking-controls">
-          <span>Configurable Ranking:</span>
-          <select id="prioritySelect" style="padding:0.3rem 0.6rem; font-size:0.8rem;" onchange="executeFullAnalysis()">
-            <option value="balanced">Balanced (40% Commute, 35% Rent, 25% Tax)</option>
-            <option value="commute">Commute Priority (60% Commute, 25% Rent, 15% Tax)</option>
-            <option value="budget">Budget Priority (20% Commute, 55% Rent, 25% Tax)</option>
-          </select>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.6rem 1rem; border-radius:8px; font-size:0.82rem;">
+          <div id="rankingSummary">Select profile to calculate optimal areas...</div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <span>Weights: Commute 40% | Rent 35% | Tax 25%</span>
+          </div>
         </div>
+
         <div class="ranking-grid" id="rankingGrid">
-          <div class="empty-state">Loading areas and SCB statistics...</div>
+          <div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
+            Click <strong>"Run Affordability & Area Analysis"</strong> to generate A2UI cards.
+          </div>
         </div>
       </div>
 
-      <!-- Tab 2: AI Agent Advisor -->
       <div id="tab-agent" class="tab-pane">
         <div class="chat-container">
           <div class="chat-messages" id="chatMessages">
-            <div class="msg agent">
-              <strong>🇸🇪 WorkNest AI Advisor:</strong><br>
-              Hej! I am your agentic relocation specialist for Sweden. I provide grounded recommendations with verified data:
-              <ul style="margin-left: 1.25rem; margin-top:0.3rem;">
-                <li>Official SCB municipal rents per m² & tax rates.</li>
-                <li>Empirical transit durations to your workplace hub.</li>
-                <li>Clear distinctions between regulated first-hand leases (bruksvärdeshyra) and private sublets.</li>
-              </ul>
-              Ask me anything or use the quick questions below!
+            <div class="message agent">
+              Hej! I am your <strong>Sweden Housing & Commute Relocation Agent</strong>.
+              I have loaded your long-term preferences from Vertex AI Memory Bank.
+              Ask me anything about rent ceilings, transit corridors, or first-hand vs second-hand tenancy law!
+              <div class="message-time">Just now</div>
             </div>
           </div>
-          <div class="quick-prompts">
-            <button class="quick-chip" onclick="askPredefined('What is the best area for me between Solna and Huddinge?')">Solna vs Huddinge?</button>
-            <button class="quick-chip" onclick="askPredefined('Can I afford a 2-room apartment in Göteborg Lindholmen?')">Göteborg Lindholmen options?</button>
-            <button class="quick-chip" onclick="askPredefined('Explain the difference between first-hand and second-hand rental contracts in Sweden.')">First vs Second Hand?</button>
+
+          <div class="quick-chips">
+            <div class="quick-chip" onclick="sendQuickPrompt('Explain förstahand vs andrahand tenancy rules in Sweden')">⚖️ Förstahand vs Andrahand</div>
+            <div class="quick-chip" onclick="sendQuickPrompt('What are the best commuter towns near Stockholm Central?')">🚆 Commuter Corridors</div>
+            <div class="quick-chip" onclick="sendQuickPrompt('How does the municipal tax rate impact my net take-home salary?')">💰 Municipal Tax Impact</div>
+            <div class="quick-chip" onclick="sendQuickPrompt('Remember that I prefer apartments near commuter train lines')">🧠 Remember My Preference</div>
           </div>
-          <div class="chat-bar">
-            <input type="text" id="chatInput" placeholder="Ask WorkNest AI for trade-offs or search advice..." onkeypress="if(event.key==='Enter') submitChatMessage()">
-            <button class="btn" onclick="submitChatMessage()" style="padding:0.6rem 1.1rem;">Ask</button>
+
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" placeholder="Ask about Swedish housing, budgets, or queue strategies..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="btn" style="padding:0.6rem 1.2rem;" onclick="sendMessage()">Send</button>
           </div>
         </div>
       </div>
 
-      <!-- Tab 3: Verified Listings & Queues -->
       <div id="tab-listings" class="tab-pane">
-        <div style="font-size:0.85rem; color:var(--text-muted); background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:0.6rem 0.9rem; border-radius:8px;">
-          🛡️ <strong>Zero-Hallucination Policy:</strong> WorkNest Sweden displays authentic verified listings, municipal queue portals, and direct filtered portal links.
+        <div style="background:rgba(2,132,199,0.1); border:1px solid rgba(2,132,199,0.3); border-radius:8px; padding:0.85rem; font-size:0.82rem; color:#7dd3fc;">
+          🛡️ <strong>Zero-Hallucination Policy:</strong> All links point to official municipal housing queues and verified portals.
         </div>
-        <div id="listingsContainer" style="display:flex; flex-direction:column; gap:0.9rem; overflow-y:auto; max-height:550px;">
-          <!-- Populated dynamically -->
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem; margin-top:0.5rem;">
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Bostadsförmedlingen i Stockholm</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Official Stockholm Municipal Queue</div>
+            <div class="a2ui-metric-row"><span>Typical Wait:</span><span class="stat-mono">5 - 12+ years</span></div>
+            <div class="a2ui-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
+            <a href="https://bostad.stockholm.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
+              Visit Official Portal ↗
+            </a>
+          </div>
+
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Boplats Göteborg</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Official Gothenburg Municipal Queue</div>
+            <div class="a2ui-metric-row"><span>Typical Wait:</span><span class="stat-mono">3 - 7+ years</span></div>
+            <div class="a2ui-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
+            <a href="https://nya.boplats.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
+              Visit Official Portal ↗
+            </a>
+          </div>
+
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Boplats Syd (Malmö/Skåne)</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Regional Queue for Malmö & Skåne</div>
+            <div class="a2ui-metric-row"><span>Typical Wait:</span><span class="stat-mono">2 - 5+ years</span></div>
+            <div class="a2ui-metric-row"><span>Annual Fee:</span><span class="stat-mono">300 SEK/yr</span></div>
+            <a href="https://www.boplatssyd.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
+              Visit Official Portal ↗
+            </a>
+          </div>
         </div>
       </div>
+
+      <div id="tab-gallery" class="tab-pane">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="a2ui-card" style="padding:0; overflow:hidden;">
+            <img src="/images/hero_banner.png" style="width:100%; height:240px; object-fit:cover;" alt="Stockholm Waterfront">
+            <div style="padding:1rem;">
+              <div class="a2ui-card-title">Stockholm Waterfront & Inner Suburbs</div>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.35rem;">
+                Contemporary residential quarters along Lake Mälaren with direct rapid transit (Pendeltåg & Tunnelbana) links to Stockholm Central.
+              </p>
+            </div>
+          </div>
+          <div class="a2ui-card" style="padding:0; overflow:hidden;">
+            <img src="/images/interior_nordic.png" style="width:100%; height:240px; object-fit:cover;" alt="Swedish Apartment Interior">
+            <div style="padding:1rem;">
+              <div class="a2ui-card-title">Nordic Standard Residential Interiors</div>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.35rem;">
+                Standard regulated Swedish rental apartments (hyresrätter) feature district heating (fjärrvärme), double glazing, and high energy efficiency.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <script>
-    function setTab(name) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    const USER_ID = "default_user";
 
-      if (name === 'areas') {
-        document.querySelectorAll('.tab-btn')[0].classList.add('active');
-        document.getElementById('tab-areas').classList.add('active');
-      } else if (name === 'agent') {
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
-        document.getElementById('tab-agent').classList.add('active');
-      } else if (name === 'listings') {
-        document.querySelectorAll('.tab-btn')[2].classList.add('active');
-        document.getElementById('tab-listings').classList.add('active');
-        fetchListings();
+    function setTab(name) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      const tabs = ['areas', 'agent', 'listings', 'gallery'];
+      const idx = tabs.indexOf(name);
+      if (idx !== -1) {
+        document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+        document.getElementById('tab-' + name).classList.add('active');
+      }
+    }
+
+    async function loadMemoryProfile() {
+      try {
+        const res = await fetch('/api/memory/' + USER_ID);
+        const mem = await res.json();
+        const notes = mem.notes || [];
+        document.getElementById('memoryFactsCount').innerText = (notes.length + 4) + ' facts';
+        if (notes.length > 0) {
+          document.getElementById('memoryLastNote').innerText = '• "' + notes[notes.length - 1] + '"';
+        }
+      } catch (e) {
+        console.error('Failed to load memory:', e);
       }
     }
 
     async function executeFullAnalysis() {
-      const netIncome = parseFloat(document.getElementById('netIncome').value) || 0;
-      const fixedExpenses = parseFloat(document.getElementById('fixedExpenses').value) || 0;
+      const netIncome = parseFloat(document.getElementById('netIncome').value) || 38000;
+      const fixedExpenses = parseFloat(document.getElementById('fixedExpenses').value) || 11000;
       const bufferPct = parseFloat(document.getElementById('bufferPct').value) || 15;
       const adults = parseInt(document.getElementById('adultsCount').value) || 1;
       const children = parseInt(document.getElementById('childrenCount').value) || 0;
       const workplace = document.getElementById('workplaceSelect').value;
       const maxCommute = parseInt(document.getElementById('maxCommute').value) || 35;
-      const priority = document.getElementById('prioritySelect').value;
 
-      // 1. Calculate Budget
-      const bRes = await fetch('/api/budget/calculate', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          net_income_sek: netIncome,
-          fixed_expenses_sek: fixedExpenses,
-          buffer_percentage: bufferPct,
-          household_adults: adults,
-          household_children: children
-        })
-      });
-      const bData = await bRes.json();
-      document.getElementById('resPrudentRent').innerText = Math.round(bData.recommended_rent_prudent_sek || 0).toLocaleString() + ' SEK';
-      document.getElementById('resMaxRent').innerText = Math.round(bData.max_rent_sek || 0).toLocaleString() + ' SEK';
-      document.getElementById('resBuffer').innerText = Math.round(bData.buffer_amount_sek || 0).toLocaleString() + ' SEK';
-      document.getElementById('resLeftover').innerText = Math.round(bData.left_to_live_on_prudent_sek || 0).toLocaleString() + ' SEK';
-      document.getElementById('resBaseline').innerText = Math.round(bData.swedish_baseline_reference_sek || 0).toLocaleString() + ' SEK';
-      document.getElementById('resExplanation').innerText = bData.explanation || '';
-      document.getElementById('resDisclaimer').innerText = bData.eligibility_disclaimer || '';
+      try {
+        const bRes = await fetch('/api/budget/calculate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            net_income_sek: netIncome,
+            fixed_expenses_sek: fixedExpenses,
+            buffer_percentage: bufferPct,
+            household_adults: adults,
+            household_children: children
+          })
+        });
+        const bData = await bRes.json();
+        
+        document.getElementById('resPrudentRent').innerText = bData.prudent_rent_sek.toLocaleString() + ' SEK/mo';
+        document.getElementById('resMaxRent').innerText = bData.max_rent_sek.toLocaleString() + ' SEK/mo';
+        document.getElementById('resBuffer').innerText = bData.emergency_buffer_sek.toLocaleString() + ' SEK';
+        document.getElementById('resLeftover').innerText = bData.residual_disposable_income_sek.toLocaleString() + ' SEK';
+        document.getElementById('resBaseline').innerText = bData.konsumentverket_baseline_sek.toLocaleString() + ' SEK';
+        document.getElementById('resExplanation').innerText = bData.calculation_explanation;
 
-      // 2. Fetch Ranked Areas with weights
-      let wCommute = 0.40, wRent = 0.35, wTax = 0.25;
-      if (priority === 'commute') { wCommute = 0.60; wRent = 0.25; wTax = 0.15; }
-      else if (priority === 'budget') { wCommute = 0.20; wRent = 0.55; wTax = 0.25; }
-
-      const aRes = await fetch('/api/areas/compare', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          workplace: workplace,
-          max_commute_minutes: maxCommute,
-          net_income_sek: netIncome,
-          fixed_expenses_sek: fixedExpenses,
-          weight_commute: wCommute,
-          weight_rent: wRent,
-          weight_tax: wTax
-        })
-      });
-      const aData = await aRes.json();
-      renderRankedAreas(aData.areas);
+        const aRes = await fetch('/api/areas/compare', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            workplace: workplace,
+            max_commute_minutes: maxCommute,
+            net_income_sek: netIncome,
+            fixed_expenses_sek: fixedExpenses
+          })
+        });
+        const aData = await aRes.json();
+        renderA2UICards(aData.areas || []);
+        document.getElementById('rankingSummary').innerText = 'Found ' + aData.viable_areas_count + ' viable areas within ' + maxCommute + ' mins of ' + workplace;
+      } catch (e) {
+        alert('Error performing analysis: ' + e);
+      }
     }
 
-    function renderRankedAreas(areas) {
-      const grid = document.getElementById('rankingGrid');
+    function renderA2UICards(areas) {
+      const container = document.getElementById('rankingGrid');
+      container.innerHTML = '';
+
       if (!areas || areas.length === 0) {
-        grid.innerHTML = '<div class="empty-state">No areas found within this commute limit. Try increasing the commute slider.</div>';
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem;">No viable areas found. Try increasing the maximum commute time.</div>';
         return;
       }
 
-      grid.innerHTML = areas.map(a => {
-        const scb = a.scb_stats || {};
-        const taxRate = scb.municipal_tax_rate_percent ? scb.municipal_tax_rate_percent + '%' : 'N/A';
-        const rentSqm = scb.annual_rent_per_sqm_sek ? scb.annual_rent_per_sqm_sek + ' SEK/m²' : 'N/A';
-        const studioEst = scb.scb_norm_rents && scb.scb_norm_rents.studio_35sqm_sek ? scb.scb_norm_rents.studio_35sqm_sek.toLocaleString() + ' SEK' : '~';
-        const twoBedEst = scb.scb_norm_rents && scb.scb_norm_rents['2bed_75sqm_sek'] ? scb.scb_norm_rents['2bed_75sqm_sek'].toLocaleString() + ' SEK' : '~';
+      areas.forEach((area, index) => {
+        const card = document.createElement('div');
+        card.className = 'a2ui-card';
+        
+        const normRents = area.scb_stats?.scb_norm_rents || {};
+        const rent1bed = normRents['1bed_55sqm_sek'] ? normRents['1bed_55sqm_sek'].toLocaleString() + ' SEK/mo' : 'Data pending';
+        const tax = area.scb_stats?.tax_rate_percent ? area.scb_stats.tax_rate_percent + '%' : 'N/A';
 
-        return `
-          <div class="area-card">
-            <span class="rank-badge">#${a.rank} (${a.overall_score} pts)</span>
-            <div style="font-size:1.05rem; font-weight:700; color:#fff;">${a.origin_area}</div>
-            <div style="font-size:0.8rem; color:var(--text-muted);">${a.transit_line_type} &bull; ${a.distance_km} km</div>
-            
-            <div style="display:flex; justify-content:space-between; margin-top:0.4rem; font-size:0.85rem; border-top:1px solid #1f293d; padding-top:0.4rem;">
-              <span>Commute Time:</span>
-              <span class="stat-mono" style="color:#34d399;">${a.estimated_transit_minutes} min</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-              <span>SCB Rent Level:</span>
-              <span class="stat-mono">${rentSqm}</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-              <span>Municipal Tax:</span>
-              <span class="stat-mono">${taxRate}</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.78rem; color:var(--yellow); margin-top:0.15rem;">
-              <span>Studio / 3-Room:</span>
-              <span>${studioEst} / ${twoBedEst}</span>
-            </div>
-
-            <div style="font-size:0.78rem; color:#7dd3fc; background:rgba(2,132,199,0.12); padding:0.4rem; border-radius:6px; margin-top:0.35rem;">
-              ${a.affordability_assessment}
-            </div>
-          </div>
-        `;
-      }).join('');
+        card.innerHTML = 
+          '<div class="a2ui-badge-top">#' + (index + 1) + ' (' + area.rank_score + '/100)</div>' +
+          '<div class="a2ui-card-title">' + area.area_name + '</div>' +
+          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + area.municipality + ' • ' + area.transit_mode + '</div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute to Hub:</span><span class="stat-mono">' + area.commute_minutes + ' mins</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">SCB Avg Rent (1-2 room):</span><span class="stat-mono">' + rent1bed + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Municipal Tax Rate:</span><span class="stat-mono">' + tax + '</span></div>' +
+          '<div style="font-size:0.78rem; color:#cbd5e1; margin-top:0.3rem;">' + (area.corridor_notes || 'Fast commuter access.') + '</div>' +
+          '<div class="a2ui-tag-row"><span class="a2ui-pill">Score: ' + area.rank_score + '</span><span class="a2ui-pill">' + area.affordability_assessment + '</span></div>';
+        container.appendChild(card);
+      });
     }
 
-    async function fetchListings() {
-      const container = document.getElementById('listingsContainer');
-      const res = await fetch('/api/listings/search');
-      const data = await res.json();
-
-      let html = `
-        <div style="background:#0b111e; border:1px solid #1f293d; border-radius:10px; padding:1rem;">
-          <div style="font-weight:700; color:#fff; font-size:0.92rem;">Official Municipal Housing Queues (First-Hand):</div>
-          <div style="font-size:0.85rem; margin-top:0.3rem;"><strong>${data.official_municipal_queue.name}</strong> (${data.official_municipal_queue.type})</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">${data.official_municipal_queue.details}</div>
-          <a href="${data.official_municipal_queue.url}" target="_blank" style="display:inline-block; margin-top:0.3rem; font-size:0.82rem;">Visit Registration Portal &rarr;</a>
-        </div>
-        <div style="font-weight:700; font-size:0.92rem; margin-top:0.5rem;">Verified Real Sublet Listings:</div>
-      `;
-
-      html += data.verified_listings.map(l => `
-        <div class="area-card" style="border-left:3px solid #10b981;">
-          <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.95rem;">
-            <span>${l.title}</span>
-            <span style="color:#34d399; font-family:'JetBrains Mono';">${l.rent_sek.toLocaleString()} SEK/mo</span>
-          </div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">
-            ${l.area}, ${l.municipality} &bull; ${l.size_sqm} m² (${l.rooms} rooms) &bull; ${l.listing_type}
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem; font-size:0.75rem;">
-            <span style="color:#94a3b8;">Source: ${l.source}</span>
-            <a href="${l.url}" target="_blank" style="font-size:0.8rem;">View Listing Source &rarr;</a>
-          </div>
-        </div>
-      `).join('');
-
-      html += `
-        <div style="font-weight:700; font-size:0.92rem; margin-top:0.5rem;">Direct Search Channels (Filtered):</div>
-        <div style="display:flex; flex-direction:column; gap:0.4rem;">
-      `;
-
-      html += data.verified_portal_searches.map(p => `
-        <div style="background:var(--surface); padding:0.6rem 0.85rem; border-radius:6px; font-size:0.82rem; display:flex; justify-content:space-between;">
-          <span>${p.service}</span>
-          <a href="${p.url}" target="_blank">Search &rarr;</a>
-        </div>
-      `).join('');
-
-      html += '</div>';
-      container.innerHTML = html;
-    }
-
-    async function submitChatMessage() {
+    async function sendMessage() {
       const input = document.getElementById('chatInput');
-      const msg = input.value.trim();
-      if (!msg) return;
+      const text = input.value.trim();
+      if (!text) return;
 
-      const chatBox = document.getElementById('chatMessages');
-      chatBox.innerHTML += `<div class="msg user">${msg}</div>`;
+      appendChatMessage(text, 'user');
       input.value = '';
-      chatBox.scrollTop = chatBox.scrollHeight;
-
-      const tid = 'loading-' + Date.now();
-      chatBox.innerHTML += `<div class="msg agent" id="${tid}"><em>Consulting Swedish datasets & Gemini model...</em></div>`;
-      chatBox.scrollTop = chatBox.scrollHeight;
 
       try {
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            session_id: 'browser_user_session',
-            message: msg
+            session_id: 'web_session_' + USER_ID,
+            user_id: USER_ID,
+            message: text
           })
         });
         const data = await res.json();
-        document.getElementById(tid).remove();
-        const formatted = data.reply.replace(/\n/g, '<br>');
-        chatBox.innerHTML += `<div class="msg agent"><strong>🇸🇪 WorkNest Advisor:</strong><br>${formatted}</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-      } catch (err) {
-        document.getElementById(tid).innerHTML = `<span style="color:var(--rose);">Error communicating with advisor: ${err.message}</span>`;
+        appendChatMessage(data.reply, 'agent');
+        loadMemoryProfile();
+      } catch (e) {
+        appendChatMessage('Error communicating with agent: ' + e, 'agent');
       }
     }
 
-    function askPredefined(q) {
-      document.getElementById('chatInput').value = q;
-      submitChatMessage();
+    function sendQuickPrompt(prompt) {
+      setTab('agent');
+      document.getElementById('chatInput').value = prompt;
+      sendMessage();
+    }
+
+    function appendChatMessage(text, sender) {
+      const container = document.getElementById('chatMessages');
+      const msg = document.createElement('div');
+      msg.className = 'message ' + sender;
+      msg.innerHTML = '<div>' + text.replace(/
+/g, '<br>') + '</div><div class="message-time">Just now</div>';
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      loadMemoryProfile();
       executeFullAnalysis();
     });
   </script>

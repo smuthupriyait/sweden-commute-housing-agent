@@ -1,6 +1,7 @@
 """
-WorkNest Sweden - FastAPI Application
-Provides REST endpoints for calculation, multi-criteria ranking, and conversational AI agent.
+Sweden Commute & Affordable Housing Navigator - FastAPI Application
+Provides REST endpoints for calculation, multi-criteria ranking, Long-term Memory Bank,
+A2UI Card surfaces, and conversational AI agent.
 """
 
 from fastapi import FastAPI, HTTPException
@@ -15,11 +16,13 @@ from tools.commute import evaluate_commute, find_viable_areas_for_workplace, WOR
 from tools.ranking import score_and_rank_areas
 from tools.strategy import generate_housing_strategy
 from tools.listings import search_verified_listings
+from tools.memory_service import memory_bank
+from tools.a2ui_builder import build_area_cards_a2ui, build_budget_a2ui
 from agent import WorkNestAgent
 
 app = FastAPI(
-    title="WorkNest Sweden",
-    description="Agent-first housing & commute advisory platform for workers in Sweden"
+    title="Sweden Commute & Affordable Housing Finder",
+    description="Agent-first housing & commute advisory platform with Memory Bank and A2UI cards"
 )
 
 app.add_middleware(
@@ -30,7 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory agent sessions
 sessions: Dict[str, WorkNestAgent] = {}
 
 class BudgetRequest(BaseModel):
@@ -64,8 +66,14 @@ class StrategyRequest(BaseModel):
     buffer_percentage: float = 15.0
     prioritize: str = "balanced"
 
+class MemoryUpdateRequest(BaseModel):
+    user_id: str = "default_user"
+    key: str
+    value: Any
+
 class ChatRequest(BaseModel):
     session_id: str = "default_session"
+    user_id: str = "default_user"
     message: str
 
 @app.get("/api/config")
@@ -77,15 +85,28 @@ def get_config():
         "municipalities": list(MUNICIPALITY_CODES.keys())
     }
 
+@app.get("/api/memory/{user_id}")
+def get_user_memory(user_id: str):
+    """Retrieve long-term memory for a user."""
+    return memory_bank.get_memories(user_id)
+
+@app.post("/api/memory")
+def update_user_memory(req: MemoryUpdateRequest):
+    """Save a user fact/preference to Memory Bank."""
+    memory_bank.save_memory(req.user_id, req.key, req.value)
+    return {"status": "saved", "memories": memory_bank.get_memories(req.user_id)}
+
 @app.post("/api/budget/calculate")
 def calculate_budget_endpoint(req: BudgetRequest):
-    return calculate_rent_budget(
+    budget = calculate_rent_budget(
         net_income_sek=req.net_income_sek,
         fixed_expenses_sek=req.fixed_expenses_sek,
         buffer_percentage=req.buffer_percentage,
         household_adults=req.household_adults,
         household_children=req.household_children
     )
+    budget["a2ui"] = build_budget_a2ui(budget)
+    return budget
 
 @app.post("/api/commute/evaluate")
 def evaluate_commute_endpoint(req: CommuteRequest):
@@ -97,10 +118,6 @@ def evaluate_commute_endpoint(req: CommuteRequest):
 
 @app.post("/api/areas/compare")
 def compare_areas_endpoint(req: AreaComparisonRequest):
-    """
-    Finds viable areas for the workplace, joins them with authentic SCB data,
-    and ranks them using multi-criteria configurable scoring.
-    """
     viable_areas = find_viable_areas_for_workplace(
         workplace=req.workplace,
         max_commute_minutes=req.max_commute_minutes
@@ -134,7 +151,6 @@ def compare_areas_endpoint(req: AreaComparisonRequest):
             "affordability_assessment": affordable_note
         })
 
-    # Apply ranking
     ranked = score_and_rank_areas(
         viable_areas=enriched,
         user_budget_max_sek=budget_info.get("max_rent_sek", 15000),
@@ -143,11 +159,14 @@ def compare_areas_endpoint(req: AreaComparisonRequest):
         weight_tax=req.weight_tax or 0.25
     )
 
+    a2ui_cards = build_area_cards_a2ui(ranked)
+
     return {
         "workplace": req.workplace,
         "max_commute_minutes": req.max_commute_minutes,
         "viable_areas_count": len(ranked),
-        "areas": ranked
+        "areas": ranked,
+        "a2ui_cards": a2ui_cards
     }
 
 @app.post("/api/strategy/generate")
@@ -169,7 +188,9 @@ def search_listings_endpoint(municipality: Optional[str] = None, max_rent: Optio
 
 @app.post("/api/chat")
 def chat_with_agent(req: ChatRequest):
-    """Conversational endpoint with the autonomous WorkNest agent."""
+    memories = memory_bank.get_memories(req.user_id)
+    memory_context = f"[Context: User long-term preferences: {memories}]"
+    
     if req.session_id not in sessions:
         try:
             sessions[req.session_id] = WorkNestAgent()
@@ -178,8 +199,22 @@ def chat_with_agent(req: ChatRequest):
 
     agent = sessions[req.session_id]
     try:
-        reply = agent.send_message(req.message)
-        return {"session_id": req.session_id, "reply": reply}
+        combined_prompt = f"{memory_context}\nUser says: {req.message}"
+        reply = agent.send_message(combined_prompt)
+        
+        # Check if user stated preference to persist to memory
+        msg_lower = req.message.lower()
+        if "prefer" in msg_lower or "budget is" in msg_lower or "work at" in msg_lower:
+            notes = memories.get("notes", [])
+            notes.append(req.message)
+            memory_bank.save_memory(req.user_id, "notes", notes[-5:])
+            
+        return {
+            "session_id": req.session_id,
+            "user_id": req.user_id,
+            "reply": reply,
+            "recalled_memories": memories
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Agent error: {str(e)}")
 
