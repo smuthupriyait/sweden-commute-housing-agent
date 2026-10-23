@@ -159,13 +159,25 @@ def compare_areas_endpoint(req: AreaComparisonRequest):
         weight_tax=req.weight_tax or 0.25
     )
 
-    a2ui_cards = build_area_cards_a2ui(ranked)
+    # Standardize dictionary keys for frontend and A2UI cards
+    standardized = []
+    for r in ranked:
+        item = dict(r)
+        item["area_name"] = r.get("origin_area") or r.get("area_name", "Area")
+        item["rank_score"] = r.get("overall_score") or r.get("rank_score", 0)
+        item["commute_minutes"] = r.get("estimated_transit_minutes") or r.get("commute_minutes", 0)
+        item["transit_mode"] = r.get("transit_line_type") or r.get("transit_mode", "Transit")
+        if "scb_stats" in item and "municipal_tax_rate_percent" in item["scb_stats"]:
+            item["scb_stats"]["tax_rate_percent"] = item["scb_stats"]["municipal_tax_rate_percent"]
+        standardized.append(item)
+
+    a2ui_cards = build_area_cards_a2ui(standardized)
 
     return {
         "workplace": req.workplace,
         "max_commute_minutes": req.max_commute_minutes,
-        "viable_areas_count": len(ranked),
-        "areas": ranked,
+        "viable_areas_count": len(standardized),
+        "areas": standardized,
         "a2ui_cards": a2ui_cards
     }
 
