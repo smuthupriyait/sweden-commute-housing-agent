@@ -699,12 +699,19 @@
         });
         const bData = await bRes.json();
         
-        document.getElementById('resPrudentRent').innerText = bData.prudent_rent_sek.toLocaleString() + ' SEK/mo';
-        document.getElementById('resMaxRent').innerText = bData.max_rent_sek.toLocaleString() + ' SEK/mo';
-        document.getElementById('resBuffer').innerText = bData.emergency_buffer_sek.toLocaleString() + ' SEK';
-        document.getElementById('resLeftover').innerText = bData.residual_disposable_income_sek.toLocaleString() + ' SEK';
-        document.getElementById('resBaseline').innerText = bData.konsumentverket_baseline_sek.toLocaleString() + ' SEK';
-        document.getElementById('resExplanation').innerText = bData.calculation_explanation;
+        const prudentRent = bData.recommended_rent_prudent_sek || bData.prudent_rent_sek || 0;
+        const maxRent = bData.max_rent_sek || 0;
+        const bufferAmt = bData.buffer_amount_sek || bData.emergency_buffer_sek || 0;
+        const leftover = bData.left_to_live_on_prudent_sek || bData.residual_disposable_income_sek || 0;
+        const baseline = bData.swedish_baseline_reference_sek || bData.konsumentverket_baseline_sek || 0;
+        const explanation = bData.explanation || bData.calculation_explanation || '';
+
+        document.getElementById('resPrudentRent').innerText = prudentRent.toLocaleString() + ' SEK/mo';
+        document.getElementById('resMaxRent').innerText = maxRent.toLocaleString() + ' SEK/mo';
+        document.getElementById('resBuffer').innerText = bufferAmt.toLocaleString() + ' SEK';
+        document.getElementById('resLeftover').innerText = leftover.toLocaleString() + ' SEK';
+        document.getElementById('resBaseline').innerText = baseline.toLocaleString() + ' SEK';
+        document.getElementById('resExplanation').innerText = explanation;
 
         const aRes = await fetch('/api/areas/compare', {
           method: 'POST',
@@ -790,8 +797,8 @@
       const container = document.getElementById('chatMessages');
       const msg = document.createElement('div');
       msg.className = 'message ' + sender;
-      msg.innerHTML = '<div>' + text.replace(/
-/g, '<br>') + '</div><div class="message-time">Just now</div>';
+      const formatted = String(text).split('\n').join('<br>');
+      msg.innerHTML = '<div>' + formatted + '</div><div class="message-time">Just now</div>';
       container.appendChild(msg);
       container.scrollTop = container.scrollHeight;
     }
