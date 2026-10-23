@@ -285,6 +285,17 @@
       border-radius: 20px;
       font-family: 'JetBrains Mono', monospace;
     }
+    .sample-tag {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
     .a2ui-card-title {
       font-size: 1.05rem;
       font-weight: 800;
@@ -407,34 +418,34 @@
       </div>
     </div>
     <div class="header-badges">
-      <div class="badge-pill"><span>📡</span> SCB Official Rent & Tax Open API</div>
-      <div class="badge-pill"><span>🚆</span> SL Public Transit Network</div>
-      <div class="badge-pill"><span>🧠</span> Vertex AI Memory Bank Active</div>
+      <div class="badge-pill"><span>📡</span> SCB Doris Open Data (BO0406Tab01)</div>
+      <div class="badge-pill"><span>🚆</span> SL Public Transit Network Corridors</div>
+      <div class="badge-pill"><span>🔒</span> Local Privacy-First Memory Store</div>
     </div>
   </header>
 
   <div class="hero-container">
     <div class="hero-content">
       <div class="hero-badge">
-        <span>⚡</span> Verified Multi-Criteria Apartment Discovery & Commute Engine
+        <span>🧭</span> Explainable Rent Budgeting & Commute Corridors
       </div>
-      <h1 class="hero-title">Discover Apartments & Commuter Corridors Near Your Job</h1>
+      <h1 class="hero-title">Find Realistic Housing Near Your Workplace</h1>
       <p class="hero-desc">
-        Evaluate door-to-door transit times, authentic SCB municipal tax and rent baselines, verified apartment listings in Solna, Sundbyberg and Stockholm, and manage long-term relocation preferences with Gemini 2.5 Flash.
+        Evaluate door-to-door transit times, authentic SCB municipal tax and rent statistics, curated representative apartments, and official Swedish housing queues with transparent cost-of-living guidance.
       </p>
     </div>
     <div class="hero-stats">
       <div class="hero-stat-item">
         <div class="hero-stat-num">20</div>
-        <div class="hero-stat-label">Municipalities</div>
+        <div class="hero-stat-label">Municipalities Analyzed</div>
       </div>
       <div class="hero-stat-item">
-        <div class="hero-stat-num">30ms</div>
-        <div class="hero-stat-label">Instant Latency</div>
+        <div class="hero-stat-num">SL Corridors</div>
+        <div class="hero-stat-label">Rail & Metro Networks</div>
       </div>
       <div class="hero-stat-item">
-        <div class="hero-stat-num">100%</div>
-        <div class="hero-stat-label">Zero-Hallucination</div>
+        <div class="hero-stat-num">SCB Open API</div>
+        <div class="hero-stat-label">Official Statistics</div>
       </div>
     </div>
   </div>
@@ -506,44 +517,62 @@
           Affordability & Disposable Headroom ('Kvar att leva på')
         </div>
         <div class="budget-row">
-          <span>Prudent Rent Recommendation:</span>
-          <span class="stat-mono highlight-yellow" id="resPrudentRent">~</span>
+          <span>Monthly Net Take-Home Income:</span>
+          <span class="stat-mono" id="resNetIncome">38,000 SEK</span>
         </div>
         <div class="budget-row">
-          <span>Maximum Prudent Ceiling:</span>
-          <span class="stat-mono" id="resMaxRent">~</span>
+          <span>Fixed Monthly Obligations:</span>
+          <span class="stat-mono" id="resFixedExp">11,000 SEK</span>
         </div>
         <div class="budget-row">
-          <span>Emergency Buffer Reserved:</span>
-          <span class="stat-mono" id="resBuffer">~</span>
+          <span>Recommended Prudent Rent:</span>
+          <span class="stat-mono highlight-yellow" id="resPrudentRent">12,540 SEK/mo</span>
         </div>
         <div class="budget-row">
-          <span>Remaining Income After Rent & Fixed Costs:</span>
-          <span class="stat-mono highlight-green" id="resLeftover">~</span>
+          <span>Maximum Suggested Rent:</span>
+          <span class="stat-mono" id="resMaxRent">15,960 SEK/mo</span>
         </div>
         <div class="budget-row">
-          <span>Konsumentverket Standard Baseline:</span>
-          <span class="stat-mono" id="resBaseline">~</span>
+          <span>Emergency Savings Reserve:</span>
+          <span class="stat-mono" id="resBuffer">5,700 SEK</span>
         </div>
-        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.4rem;" id="resExplanation">
+        <div class="budget-row" style="background:rgba(255,255,255,0.03); padding:0.25rem 0.4rem; border-radius:4px;">
+          <span>Remaining After Rent & Fixed (Before Reserve):</span>
+          <span class="stat-mono highlight-yellow" id="resRemainBefore">14,460 SEK</span>
+        </div>
+        <div class="budget-row" style="background:rgba(16,185,129,0.08); padding:0.25rem 0.4rem; border-radius:4px;">
+          <span>Remaining After Rent, Fixed & Reserve:</span>
+          <span class="stat-mono highlight-green" id="resLeftover">8,760 SEK</span>
+        </div>
+        <div class="budget-row">
+          <span>Konsumentverket Standard Reference:</span>
+          <span class="stat-mono" id="resBaseline">8,500 SEK</span>
+        </div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.4rem; line-height:1.45;" id="resExplanation">
           Calculating...
+        </div>
+        <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.35rem; line-height:1.4; border-top:1px dashed #334155; padding-top:0.35rem;" id="resMaxExplanation">
+          Maximum suggested rent is an upper boundary (~42% of take-home pay) and should not be viewed as universally affordable.
         </div>
       </div>
 
       <div class="disclaimer-box">
-        ⚠️ <strong>Important Cost of Living Notice:</strong> The remaining disposable income above must cover food/groceries (~4,000 SEK/person), SL public transport card (1,020 SEK/mo), household electricity & district heating, and home insurance (<em>hemförsäkring</em>).
+        ⚠️ <strong>Cost of Living Notice:</strong> The remaining disposable income above must cover all everyday essentials: food/groceries (~4,000 SEK/person), SL public transport (1,020 SEK/mo), household electricity & district heating, and home insurance (<em>hemförsäkring</em>).
       </div>
 
-      <!-- Long-term Memory Badge -->
+      <!-- Saved Preferences Card -->
       <div class="memory-badge-card">
         <div class="memory-badge-title">
-          <span>🧠 Long-Term Memory Profile</span>
-          <button class="btn btn-secondary" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="openMemoryModal()">Edit Profile</button>
+          <span>🔒 Saved Preferences</span>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn btn-secondary" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="openMemoryModal()">Edit</button>
+            <button class="btn btn-danger" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="clearMemoryProfile()">Clear</button>
+          </div>
         </div>
         <div class="memory-list" id="memoryList">
           <div>• User: <span style="color:#fff;">default_user</span></div>
-          <div>• Stored facts: <span id="memoryFactsCount" style="color:#38bdf8;">Loading...</span></div>
-          <div id="memoryLastNote" style="font-style:italic;">Syncing with Vertex Memory Bank...</div>
+          <div>• Saved criteria: <span id="memoryFactsCount" style="color:#38bdf8;">Loading...</span></div>
+          <div id="memoryLastNote" style="font-style:italic;">Loading stored profile...</div>
         </div>
       </div>
     </div>
@@ -551,20 +580,20 @@
     <!-- Right Column: Interactive Tabbed Workspace -->
     <div class="panel" style="gap:1rem;">
       <div class="tabs-nav">
-        <button class="tab-btn active" onclick="setTab('apartments')">🏢 Verified Apartment Discovery</button>
+        <button class="tab-btn active" onclick="setTab('apartments')">🏢 Find Available Apartments</button>
         <button class="tab-btn" onclick="setTab('neighborhoods')">🏘️ Neighborhood Explorer (Solna & More)</button>
-        <button class="tab-btn" onclick="setTab('areas')">📍 A2UI Ranked Municipalities</button>
-        <button class="tab-btn" onclick="setTab('agent')">🤖 AI Assistant & Memory</button>
-        <button class="tab-btn" onclick="setTab('queues')">📋 Official Queues & Portals</button>
+        <button class="tab-btn" onclick="setTab('areas')">📍 Recommended Areas</button>
+        <button class="tab-btn" onclick="setTab('agent')">🤖 Housing Advisory Assistant</button>
+        <button class="tab-btn" onclick="setTab('queues')">📋 Rental Queues & Housing Providers</button>
       </div>
 
       <!-- TAB 1: APARTMENT SEARCH & DISCOVERY -->
       <div id="tab-apartments" class="tab-pane active">
         <div class="transparency-banner">
-          <div style="font-size:1.4rem;">🛡️</div>
+          <div style="font-size:1.4rem;">ℹ️</div>
           <div>
-            <strong>Verified Inventory & Zero Hallucination Guarantee:</strong>
-            Swedish rental portals (Blocket Bostad, Qasa, Samtrygg) do not offer open public APIs. Below are authenticated verified real listings with verified addresses, transit stops, and timestamps. Pre-filtered direct application links are provided for every Swedish platform.
+            <strong>Apartment Discovery & Direct Rental Links:</strong>
+            Swedish rental portals (Blocket Bostad, Qasa, Samtrygg) do not provide public unauthenticated REST APIs. Below are curated representative sample properties illustrating typical rents, layouts, and transit connections in these neighborhoods, alongside direct links to live application portals and official queues.
           </div>
         </div>
 
@@ -669,43 +698,43 @@
         </div>
       </div>
 
-      <!-- TAB 3: A2UI RANKED AREAS (MUNICIPALITIES) -->
+      <!-- TAB 3: RECOMMENDED AREAS (MUNICIPALITIES) -->
       <div id="tab-areas" class="tab-pane">
         <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.6rem 1rem; border-radius:8px; font-size:0.82rem;">
           <div id="rankingSummary">Calculating optimal municipalities...</div>
-          <div>Weights: Commute 40% | Rent 35% | Tax 25%</div>
+          <div>Evaluation Weights: Commute 40% | SCB Rent 35% | Tax Rate 25%</div>
         </div>
 
         <div class="ranking-grid" id="rankingGrid">
           <div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
-            Click <strong>"Run Affordability & Area Analysis"</strong> to generate A2UI cards.
+            Click <strong>"Run Affordability & Area Analysis"</strong> to generate ranked area recommendations.
           </div>
         </div>
       </div>
 
-      <!-- TAB 4: AI ASSISTANT & MEMORY -->
+      <!-- TAB 4: HOUSING ADVISORY ASSISTANT -->
       <div id="tab-agent" class="tab-pane">
         <div style="background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); border-radius:10px; padding:0.85rem 1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
           <div>
             <div style="font-size:0.85rem; font-weight:700; color:#38bdf8; display:flex; align-items:center; gap:0.4rem;">
-              <span>🧠</span> Vertex Long-Term Memory Active (<span id="chatTabMemoryCount">Loading...</span>)
+              <span>🤖</span> Housing Advisory Assistant (<span id="chatTabMemoryCount">Loading...</span>)
             </div>
             <div id="chatTabMemorySummary" style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">
-              Synced with user_memories.json store
+              Personalized with your saved criteria
             </div>
           </div>
           <div style="display:flex; gap:0.5rem;">
             <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="loadMemoryProfile()">🔄 Refresh</button>
-            <button class="btn btn-danger" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="clearMemoryProfile()">🗑️ Clear Memories</button>
+            <button class="btn btn-danger" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="clearMemoryProfile()">🗑️ Clear Preferences</button>
           </div>
         </div>
 
         <div class="chat-container">
           <div class="chat-messages" id="chatMessages">
             <div class="message agent">
-              Hej! I am your <strong>Sweden Housing & Commute Relocation Agent</strong>.
-              I have loaded your preferences from Vertex AI Memory Bank.
-              Ask me about specific neighborhoods (Arenastaden, Råsunda, Huvudsta, Bergshamra), rent budgets, commute times, or tenancy regulations!
+              Hej! I am your <strong>Sweden Housing & Commute Advisory Assistant</strong>.
+              I have loaded your financial profile and saved preferences.
+              Ask me about specific neighborhoods (Arenastaden, Råsunda, Huvudsta, Bergshamra), rent budgets, commute times, or Swedish tenancy guidelines!
               <div class="message-time">Just now</div>
             </div>
           </div>
@@ -924,19 +953,29 @@
         });
         const bData = await bRes.json();
 
-        const prudentRent = bData.recommended_rent_prudent_sek || 12500;
-        const maxRent = bData.max_rent_sek || 15000;
-        const bufferAmt = bData.emergency_buffer_sek || 5700;
-        const leftover = bData.residual_disposable_income_sek || (netIncome - prudentRent - fixedExpenses);
+        const netInc = bData.net_income_sek || netIncome;
+        const fixedExp = bData.fixed_expenses_sek || fixedExpenses;
+        const prudentRent = bData.recommended_rent_prudent_sek || 12540;
+        const maxRent = bData.max_rent_sek || 15960;
+        const bufferAmt = bData.buffer_amount_sek || 5700;
+        const remainBefore = bData.remaining_before_savings_sek || (netInc - fixedExp - prudentRent);
+        const remainAfter = bData.remaining_after_savings_sek || (remainBefore - bufferAmt);
         const baseline = bData.konsumentverket_baseline_sek || 8500;
         const explanation = bData.calculation_explanation || '';
+        const maxExplanation = bData.max_rent_explanation || '';
 
-        document.getElementById('resPrudentRent').innerText = prudentRent.toLocaleString() + ' SEK/mo';
-        document.getElementById('resMaxRent').innerText = maxRent.toLocaleString() + ' SEK/mo';
-        document.getElementById('resBuffer').innerText = bufferAmt.toLocaleString() + ' SEK';
-        document.getElementById('resLeftover').innerText = leftover.toLocaleString() + ' SEK';
-        document.getElementById('resBaseline').innerText = baseline.toLocaleString() + ' SEK';
+        document.getElementById('resNetIncome').innerText = Number(netInc).toLocaleString() + ' SEK';
+        document.getElementById('resFixedExp').innerText = Number(fixedExp).toLocaleString() + ' SEK';
+        document.getElementById('resPrudentRent').innerText = Number(prudentRent).toLocaleString() + ' SEK/mo';
+        document.getElementById('resMaxRent').innerText = Number(maxRent).toLocaleString() + ' SEK/mo';
+        document.getElementById('resBuffer').innerText = Number(bufferAmt).toLocaleString() + ' SEK';
+        document.getElementById('resRemainBefore').innerText = Number(remainBefore).toLocaleString() + ' SEK';
+        document.getElementById('resLeftover').innerText = Number(remainAfter).toLocaleString() + ' SEK';
+        document.getElementById('resBaseline').innerText = Number(baseline).toLocaleString() + ' SEK';
         document.getElementById('resExplanation').innerText = explanation;
+        if (document.getElementById('resMaxExplanation')) {
+          document.getElementById('resMaxExplanation').innerText = maxExplanation;
+        }
 
         // Sync Apartment Filter Max Rent
         document.getElementById('aptFilterMaxRent').value = Math.round(maxRent);
@@ -1005,7 +1044,7 @@
 
       if (!listings || listings.length === 0) {
         container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">' +
-          'No verified listings match your current filters. Try relaxing the rent ceiling or room requirements, or use the direct portal search links below.</div>';
+          'No representative properties match your current filters. Try relaxing the rent ceiling or room requirements, or use the direct portal search links below.</div>';
         return;
       }
 
@@ -1015,29 +1054,36 @@
 
         const utilitiesBadge = apt.utilities_included && apt.utilities_included.length > 0
           ? apt.utilities_included.join(', ')
-          : 'Standard heating & water';
+          : 'Standard heating & water (confirm with landlord)';
 
-        const deltaClass = (apt.budget_delta_sek >= 0) ? 'highlight-green' : 'highlight-yellow';
-        const deltaLabel = (apt.budget_delta_sek >= 0) ? '+' + apt.budget_delta_sek.toLocaleString() + ' SEK Headroom' : apt.budget_delta_sek.toLocaleString() + ' SEK above prudent';
+        const depositVal = apt.deposit || (apt.deposit_sek ? (Number(apt.deposit_sek).toLocaleString() + ' SEK (' + (apt.deposit_terms || 'Escrow') + ')') : 'Not specified');
+        const availableVal = apt.available_from ? (apt.available_from + ' (' + (apt.lease_duration || 'Flexible') + ')') : 'Contact landlord';
+        const transitStop = apt.nearest_transit_stop || 'Nearby public transit';
+        const sourceVal = apt.source || 'Public Marketplace';
+        const lastChecked = apt.last_verified_at ? (' • Checked ' + apt.last_verified_at.split('T')[0]) : '';
 
         card.innerHTML = 
-          '<div class="a2ui-badge-top">Match ' + apt.match_score + '/100</div>' +
-          '<div class="a2ui-card-title">' + apt.title + '</div>' +
-          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + apt.address + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Asking Rent:</span><span class="stat-mono highlight-yellow">' + apt.rent_sek.toLocaleString() + ' SEK/mo</span></div>' +
+          '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">' +
+            '<span class="sample-tag">Curated Sample Property</span>' +
+            '<span class="a2ui-badge-top" style="position:static;">Match ' + (apt.match_score || 85) + '/100</span>' +
+          '</div>' +
+          '<div class="a2ui-card-title">' + (apt.title || 'Apartment') + '</div>' +
+          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Address provided on application') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Asking Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Size & Rooms:</span><span class="stat-mono">' + apt.rooms + ' rooms (' + apt.size_sqm + ' m²)</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute to Job:</span><span class="stat-mono highlight-green">' + apt.calculated_commute_minutes + ' mins door-to-door</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Stop:</span><span style="font-size:0.78rem; text-align:right;">' + apt.nearest_transit_stop + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Type:</span><span style="font-size:0.78rem;">' + apt.housing_type + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Security Deposit:</span><span style="font-size:0.78rem;">' + apt.deposit + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Travel Time:</span><span class="stat-mono highlight-green">' + apt.calculated_commute_minutes + ' mins to workplace*</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Stop:</span><span style="font-size:0.78rem; text-align:right;">' + transitStop + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Type:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Second-hand sublet') + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Security Deposit:</span><span style="font-size:0.78rem;">' + depositVal + '</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Utilities Included:</span><span style="font-size:0.75rem; color:#cbd5e1; text-align:right;">' + utilitiesBadge + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Move-in / Lease:</span><span style="font-size:0.78rem;">' + apt.available_from + ' (' + apt.lease_duration + ')</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Move-in / Lease:</span><span style="font-size:0.78rem;">' + availableVal + '</span></div>' +
           '<div style="background:rgba(2,132,199,0.06); padding:0.5rem; border-radius:6px; font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">' +
-            '💡 <strong>Match Assessment:</strong> ' + apt.match_explanation +
+            '💡 <strong>Match Assessment:</strong> ' + (apt.match_explanation || 'Good fit for stated budget and commute preferences.') +
+            '<div style="font-size:0.7rem; color:#64748b; margin-top:0.25rem;">*Transit time includes scheduled SL travel + estimated walking. Excludes peak delays and transfer wait.</div>' +
           '</div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.4rem; font-size:0.72rem; color:var(--text-muted);">' +
-            '<span>Verified via ' + apt.source + '</span>' +
-            '<a href="' + apt.source_url + '" target="_blank" class="btn" style="padding:0.35rem 0.75rem; font-size:0.75rem;">View Listing ↗</a>' +
+            '<span>Source: ' + sourceVal + lastChecked + '</span>' +
+            '<a href="' + (apt.source_url || '#') + '" target="_blank" class="btn" style="padding:0.35rem 0.75rem; font-size:0.75rem;">Search Portal ↗</a>' +
           '</div>';
 
         container.appendChild(card);
@@ -1145,11 +1191,14 @@
           '<div class="a2ui-badge-top">#' + (index + 1) + ' (' + rankScore + '/100)</div>' +
           '<div class="a2ui-card-title">' + areaName + '</div>' +
           '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + muni + ' • ' + transit + '</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute to Hub:</span><span class="stat-mono">' + commute + ' mins</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">SCB Avg Rent (1-2 room):</span><span class="stat-mono">' + rent1bed + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Travel Time:</span><span class="stat-mono highlight-green">' + commute + ' mins to hub</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">SCB Statistical Rent (55 m²):</span><span class="stat-mono">' + rent1bed + '</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Municipal Tax Rate:</span><span class="stat-mono">' + tax + '</span></div>' +
-          '<div style="font-size:0.78rem; color:#cbd5e1; margin-top:0.3rem;">' + corridorNotes + '</div>' +
-          '<div class="a2ui-tag-row"><span class="a2ui-pill">Score: ' + rankScore + '</span><span class="a2ui-pill">' + assessment + '</span></div>' +
+          '<div style="font-size:0.75rem; color:#94a3b8; margin-top:0.3rem; line-height:1.4;">' +
+            'ℹ️ <strong>Area Context:</strong> ' + corridorNotes + '<br>' +
+            '<span style="font-size:0.7rem; color:#64748b;">*SCB rent is a regulated statistical average across all apartments. Individual private asking rents vary based on age, standard, and sublet terms.</span>' +
+          '</div>' +
+          '<div class="a2ui-tag-row"><span class="a2ui-pill">Overall Score: ' + rankScore + '/100</span><span class="a2ui-pill">' + assessment + '</span></div>' +
           '<button class="btn btn-secondary" style="padding:0.4rem; font-size:0.78rem; margin-top:0.4rem;" onclick="filterApartmentsByMunicipality(\'' + muni + '\')">' +
             'Explore Apartments in ' + muni + ' →' +
           '</button>';

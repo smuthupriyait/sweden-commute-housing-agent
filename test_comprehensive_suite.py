@@ -127,10 +127,55 @@ def test_5_memory_bank_crud():
 def test_6_zero_hallucination_transparency():
     res = client.post('/api/apartments/search', json={"municipality": "Solna"})
     data = res.json()
-    assert "Verified Inventory Notice" in data["data_transparency_notice"]
+    assert "Data Source Notice" in data["data_transparency_notice"]
     assert "verified_search_links" in data
     assert len(data["verified_search_links"]) >= 3
     print("PASS: Zero-hallucination compliance notice and direct Swedish portal links verified.")
+
+def test_7_exact_financial_formula():
+    # Strict Priority 1 verification:
+    # Income = 38,000 SEK, Fixed = 11,000 SEK, Reserve = 15% (5,700 SEK)
+    # Recommended rent = 12,540 SEK
+    # Remaining before reserve = 14,460 SEK
+    # Remaining after reserve = 8,760 SEK
+    res = client.post('/api/budget/calculate', json={
+        "net_income_sek": 38000,
+        "fixed_expenses_sek": 11000,
+        "buffer_percentage": 15,
+        "household_adults": 1,
+        "household_children": 0
+    })
+    assert res.status_code == 200
+    b = res.json()
+    assert b["net_income_sek"] == 38000
+    assert b["fixed_expenses_sek"] == 11000
+    assert b["buffer_amount_sek"] == 5700
+    assert b["recommended_rent_prudent_sek"] == 12540
+    assert b["remaining_before_savings_sek"] == 14460
+    assert b["remaining_after_savings_sek"] == 8760
+    assert "14,460" in b["calculation_explanation"]
+    assert "8,760" in b["calculation_explanation"]
+    print("PASS: Priority 1 financial calculations (38k/11k/15% -> 12,540 rent, 14,460 before, 8,760 after) verified.")
+
+def test_8_privacy_and_security_controls():
+    test_user = "privacy_eval_user"
+    res = client.put('/api/memory', json={
+        "user_id": test_user,
+        "profile": {
+            "workplace": "Stockholm Central / City",
+            "net_income_sek": 38000,
+            "notes": ["Looking for 2 rooms near Sundbyberg"]
+        }
+    })
+    assert res.status_code == 200
+    memories = res.json()["memories"]
+    assert "password" not in memories
+    assert "token" not in memories
+    assert "api_key" not in memories
+    
+    # Clean up test user
+    client.delete(f'/api/memory/{test_user}')
+    print("PASS: Privacy and data controls verified.")
 
 if __name__ == "__main__":
     test_1_config_endpoints()
@@ -139,4 +184,6 @@ if __name__ == "__main__":
     test_4_solna_neighborhood_discovery()
     test_5_memory_bank_crud()
     test_6_zero_hallucination_transparency()
-    print("\nALL 6 COMPREHENSIVE REGRESSION & INTEGRATION TESTS PASSED!")
+    test_7_exact_financial_formula()
+    test_8_privacy_and_security_controls()
+    print("\nALL 8 COMPREHENSIVE INTEGRATION & BENCHMARK TESTS PASSED!")

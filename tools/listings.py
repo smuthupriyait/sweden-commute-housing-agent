@@ -1,19 +1,21 @@
 """
-Verified Listings & Housing Discovery Engine
-Maintains verified rental properties with full provenance, timestamps,
-detailed lease rules, deposit and utilities coverage, and transit accessibility.
+Housing Discovery & Verified Queue Directory Engine
+Maintains representative sample properties with full provenance, timestamps,
+and direct deep-filtered search portals to official Swedish queues and marketplaces.
 
-Adheres strictly to the 'Do Not Invent Data' policy:
-- Real verified sample listings with authentic URLs and verified inspection timestamps.
-- Explicit indicators when live external scraping feeds are unavailable due to lack of public APIs.
-- Generates exact deep-filtered search URLs to Sweden's primary platforms (Blocket Bostad, Samtrygg, Qasa, Bostadsförmedlingen).
+Trust & Integrity Policy:
+- Distinctly marks representative reference properties as "Curated Sample Listing" so users
+  are never misled into believing they are querying a real-time live scraping feed.
+- Swedish rental platforms (Blocket Bostad, Qasa, Samtrygg) do not provide public unauthenticated REST APIs.
+  Direct deep links to these platforms with the user's filtered criteria are provided for live applications.
+- All municipal housing queue references are authentic and verified (Bostadsförmedlingen, Signalisten, etc.).
 """
 
 from typing import Dict, Any, List, Optional
 import urllib.parse
 from datetime import datetime
 
-# Official housing queues
+# Official housing queues and municipal providers
 OFFICIAL_HOUSING_SERVICES = {
     "Stockholm": {
         "name": "Bostadsförmedlingen i Stockholm",
@@ -22,16 +24,16 @@ OFFICIAL_HOUSING_SERVICES = {
         "details": "Central queue for first-hand rental apartments (hyresrätter) across Stockholm County."
     },
     "Solna": {
-        "name": "Signalisten & Bostadsförmedlingen i Stockholm",
-        "url": "https://bostad.stockholm.se/",
-        "type": "Municipal Queue (Solna)",
-        "details": "Solna's municipal housing company (Signalisten) distributes through Bostadsförmedlingen."
+        "name": "Signalisten (Solna Municipal Housing)",
+        "url": "https://www.signalisten.se/",
+        "type": "Municipal Housing Company",
+        "details": "Solna's municipal housing company (Signalisten) distributes through Bostadsförmedlingen i Stockholm."
     },
     "Sundbyberg": {
-        "name": "Förvaltaren (Sundbybergs kommunala bostadsbolag)",
+        "name": "Förvaltaren (Sundbyberg Municipal Housing)",
         "url": "https://www.forvaltaren.se/",
         "type": "Municipal Housing Company",
-        "details": "Sundbyberg's municipal housing queue and direct student/youth allocations."
+        "details": "Sundbyberg's municipal housing queue and direct youth/student allocations."
     },
     "Göteborg": {
         "name": "Boplats Göteborg",
@@ -53,10 +55,13 @@ OFFICIAL_HOUSING_SERVICES = {
     }
 }
 
-# Verified real listings with verified addresses, pricing, transit stops, and lease characteristics
-VERIFIED_APARTMENTS = [
+# Curated reference properties for neighborhood exploration
+# Each entry is clearly labelled as data_classification="Curated Sample Listing"
+SAMPLE_REFERENCE_APARTMENTS = [
     {
-        "id": "APT-SOL-01",
+        "id": "SAMPLE-SOL-01",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Bright 2-Room in Arenastaden near Solna Station",
         "municipality": "Solna",
         "neighborhood": "Arenastaden",
@@ -78,13 +83,15 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 3,
             "Södertälje (Scania/AstraZeneca)": 48
         },
-        "source": "Samtrygg Verified Partner",
+        "source": "Samtrygg (Marketplace Search)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Solna",
         "last_verified_at": "2026-10-23T12:00:00Z",
         "features": ["Balcony facing southwest", "Modern dishwasher & in-unit washer/dryer", "Elevator access", "Bicycle storage"]
     },
     {
-        "id": "APT-SOL-02",
+        "id": "SAMPLE-SOL-02",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Classic Turn-of-Century 1.5-Room in Råsunda",
         "municipality": "Solna",
         "neighborhood": "Råsunda",
@@ -112,7 +119,9 @@ VERIFIED_APARTMENTS = [
         "features": ["Original 2.8m ceiling height", "Preserved herringbone parquet floor", "French balcony", "Quiet courtyard view"]
     },
     {
-        "id": "APT-SOL-03",
+        "id": "SAMPLE-SOL-03",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Waterfront 2-Room in Huvudsta near Ulvsundasjön",
         "municipality": "Solna",
         "neighborhood": "Huvudsta",
@@ -134,13 +143,15 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 12,
             "Södertälje (Scania/AstraZeneca)": 51
         },
-        "source": "Samtrygg Verified",
+        "source": "Samtrygg (Marketplace Search)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Huvudsta",
         "last_verified_at": "2026-10-23T11:15:00Z",
         "features": ["3 min walk to lake promenade & outdoor pool", "Balcony with afternoon sun", "Renovated 2022 kitchen"]
     },
     {
-        "id": "APT-SOL-04",
+        "id": "SAMPLE-SOL-04",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Tranquil 1-Room Studio in Green Bergshamra",
         "municipality": "Solna",
         "neighborhood": "Bergshamra",
@@ -162,13 +173,15 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 14,
             "Södertälje (Scania/AstraZeneca)": 55
         },
-        "source": "Blocket Bostad Verified",
+        "source": "Blocket Bostad / Qasa",
         "source_url": "https://bostad.blocket.se/sv/bostad/solna",
         "last_verified_at": "2026-10-23T15:00:00Z",
         "features": ["All-inclusive utilities", "Green park outside door", "Near Brunnsviken swimming bay", "Direct Red Line to KTH / T-Centralen"]
     },
     {
-        "id": "APT-SBY-05",
+        "id": "SAMPLE-SBY-05",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Modern 2-Room in Urban Centrala Sundbyberg",
         "municipality": "Sundbyberg",
         "neighborhood": "Centrala Sundbyberg",
@@ -190,13 +203,15 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 7,
             "Södertälje (Scania/AstraZeneca)": 49
         },
-        "source": "Samtrygg Verified Partner",
+        "source": "Samtrygg (Marketplace Search)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Sundbyberg",
         "last_verified_at": "2026-10-23T09:30:00Z",
         "features": ["Super transit hub 2 min away", "Surrounded by restaurants & bakeries", "Balcony", "Floor heating in bathroom"]
     },
     {
-        "id": "APT-KGH-06",
+        "id": "SAMPLE-KGH-06",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Compact Studio in Kungsholmen near Norrmälarstrand",
         "municipality": "Stockholm",
         "neighborhood": "Kungsholmen",
@@ -218,13 +233,15 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 10,
             "Södertälje (Scania/AstraZeneca)": 44
         },
-        "source": "Qasa Verified",
+        "source": "Qasa / Blocket Bostad",
         "source_url": "https://qasa.se/sv/find-home/stockholm",
         "last_verified_at": "2026-10-23T13:45:00Z",
         "features": ["Prime inner-city location", "2 min walk to Norrmälarstrand waterfront", "Elevator", "Freshly painted"]
     },
     {
-        "id": "APT-SOL-07",
+        "id": "SAMPLE-SOL-07",
+        "data_classification": "Curated Sample Listing",
+        "is_sample_data": True,
         "title": "Spacious 3-Room Family Flat in Helenelund / Tureberg",
         "municipality": "Sollentuna",
         "neighborhood": "Helenelund / Tureberg",
@@ -246,7 +263,7 @@ VERIFIED_APARTMENTS = [
             "Solna Arenastaden / Hagastaden": 9,
             "Södertälje (Scania/AstraZeneca)": 54
         },
-        "source": "Blocket Bostad Verified",
+        "source": "Blocket Bostad / Qasa",
         "source_url": "https://bostad.blocket.se/sv/bostad/sollentuna",
         "last_verified_at": "2026-10-23T10:00:00Z",
         "features": ["Large glazed balcony", "Dedicated parking space", "Walkable footbridge to Kista", "Child-friendly courtyard"]
@@ -267,51 +284,51 @@ def search_apartment_listings(
     user_prudent_rent_sek: Optional[float] = 12540.0
 ) -> Dict[str, Any]:
     """
-    Filters verified apartments with transparent scoring,
-    and returns official queue and verified search portal URLs.
+    Filters curated sample apartments with transparent scoring,
+    and constructs targeted deep search links to live Swedish rental platforms and official queues.
     """
     matched: List[Dict[str, Any]] = []
 
-    for apt in VERIFIED_APARTMENTS:
+    for apt in SAMPLE_REFERENCE_APARTMENTS:
         # Municipality filter
-        if municipality and municipality.lower() not in apt["municipality"].lower():
+        if municipality and municipality.strip() and municipality.lower() not in apt["municipality"].lower():
             continue
         
         # Neighborhood filter
-        if neighborhood and neighborhood.lower() not in apt["neighborhood"].lower():
+        if neighborhood and neighborhood.strip() and neighborhood.lower() not in apt["neighborhood"].lower():
             continue
 
         # Rent filter
-        if max_rent_sek and apt["rent_sek"] > max_rent_sek:
+        if max_rent_sek is not None and apt["rent_sek"] > max_rent_sek:
             continue
 
         # Rooms filter
-        if min_rooms and apt["rooms"] < min_rooms:
+        if min_rooms is not None and apt["rooms"] < min_rooms:
             continue
-        if max_rooms and apt["rooms"] > max_rooms:
+        if max_rooms is not None and apt["rooms"] > max_rooms:
             continue
 
         # Area sqm filter
-        if min_sqm and apt["size_sqm"] < min_sqm:
+        if min_sqm is not None and apt["size_sqm"] < min_sqm:
             continue
 
         # Housing type filter
-        if housing_type and housing_type.lower() != "all":
+        if housing_type and housing_type.strip().lower() not in ["all", ""]:
             if housing_type.lower() not in apt["housing_type"].lower():
                 continue
 
         # Commute calculation to user's workplace
         commute_mins = apt["commute_to_hubs"].get(workplace)
         if commute_mins is None:
-            commute_mins = 20  # Default suburban connection
+            commute_mins = 20  # Suburban baseline connection
         
-        if max_commute_minutes and commute_mins > max_commute_minutes:
+        if max_commute_minutes is not None and commute_mins > max_commute_minutes:
             continue
 
         # Calculate Personalized Match Score [0..100]
         # Match considers: Rent headroom vs user budget (50%), Commute efficiency (30%), Space/sqm (20%)
-        ref_budget = user_prudent_rent_sek or 13000.0
-        rent_ratio = apt["rent_sek"] / ref_budget
+        ref_budget = user_prudent_rent_sek or 12540.0
+        rent_ratio = apt["rent_sek"] / ref_budget if ref_budget > 0 else 1.0
         if rent_ratio <= 1.0:
             rent_score = 100.0 - (rent_ratio * 15.0)  # e.g., 85 - 100
         else:
@@ -325,8 +342,8 @@ def search_apartment_listings(
         # Budget delta & disposable headroom
         rent_diff = round(ref_budget - apt["rent_sek"])
         budget_headroom_note = (
-            f"{abs(rent_diff):,} SEK below prudent ceiling (Great fit)" if rent_diff >= 0
-            else f"{abs(rent_diff):,} SEK above prudent ceiling (Manageable with caution)"
+            f"{abs(rent_diff):,} SEK below suggested prudent budget" if rent_diff >= 0
+            else f"{abs(rent_diff):,} SEK above suggested prudent budget"
         )
 
         matched_item = {
@@ -337,7 +354,7 @@ def search_apartment_listings(
             "budget_delta_sek": rent_diff,
             "match_explanation": (
                 f"Match Score: {total_match_score}/100. Rent is {budget_headroom_note}. "
-                f"Door-to-door transit to {workplace} is approx {commute_mins} minutes via {apt['nearest_transit_stop']}."
+                f"Estimated travel time to {workplace} is ~{commute_mins} minutes via {apt['nearest_transit_stop']}."
             )
         }
         matched.append(matched_item)
@@ -349,31 +366,31 @@ def search_apartment_listings(
     muni_key = municipality if municipality in OFFICIAL_HOUSING_SERVICES else "Stockholm"
     official_queue = OFFICIAL_HOUSING_SERVICES.get(muni_key, OFFICIAL_HOUSING_SERVICES["Stockholm"])
 
-    # Build verified search links for the user
+    # Build direct deep search links targeting real portals
     query_str = urllib.parse.quote(f"{municipality or 'Stockholm'} {neighborhood or ''}".strip())
     max_p = str(int(max_rent_sek)) if max_rent_sek else "15000"
     min_r = str(int(min_rooms)) if min_rooms else "1"
 
     external_search_links = [
         {
-            "service": "Blocket Bostad (Sweden's primary sublet marketplace)",
+            "service": "Blocket Bostad (Live Sublet Search)",
             "url": f"https://bostad.blocket.se/sv/bostad?q={query_str}&maxPrice={max_p}&minRooms={min_r}",
-            "description": f"Live filtered listings for {municipality or 'Stockholm'} under {max_p} SEK"
+            "description": f"View live available listings in {municipality or 'Stockholm'} under {max_p} SEK"
         },
         {
-            "service": "Samtrygg (Fraud-protected sublets with deposit guarantee)",
+            "service": "Samtrygg (Fraud-Protected Sublets)",
             "url": f"https://www.samtrygg.se/rental/search?q={query_str}",
-            "description": "Vetted private rental listings with no advance deposit required"
+            "description": "Browse private rental listings with tenant deposit guarantees"
         },
         {
-            "service": "Qasa (Direct rental contracts and verified landlords)",
+            "service": "Qasa (Direct Landlord Rentals)",
             "url": f"https://qasa.se/sv/find-home?q={query_str}",
-            "description": "Official rental platform powering Blocket Bostad"
+            "description": "Direct rental marketplace powering Blocket Bostad"
         },
         {
             "service": official_queue["name"],
             "url": official_queue["url"],
-            "description": f"Official municipal queue for first-hand apartments ({official_queue['type']})"
+            "description": f"Official municipal distribution service ({official_queue['type']})"
         }
     ]
 
@@ -382,10 +399,12 @@ def search_apartment_listings(
         "listings": matched,
         "official_queue": official_queue,
         "verified_search_links": external_search_links,
+        "is_sample_inventory": True,
         "data_transparency_notice": (
-            "Verified Inventory Notice: Swedish private rental portals (Blocket Bostad, Qasa, Samtrygg) "
-            "do not provide public unauthenticated REST APIs. The listings displayed above are verified authentic sample properties "
-            "with recorded addresses, dates, and transit stops. Use the verified portal links to apply directly or view all live available inventory."
+            "Data Source Notice: The listings above are curated representative sample properties illustrating "
+            "typical layouts, rents, and transit connections in these neighborhoods. Live Swedish rental portals "
+            "(Blocket Bostad, Qasa, Samtrygg) do not offer open public REST APIs; please use the live portal links "
+            "provided below to browse and apply for current real-time vacancies."
         )
     }
 
