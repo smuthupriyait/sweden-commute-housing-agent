@@ -4,6 +4,7 @@ Provides REST endpoints for calculation, multi-criteria ranking, Long-term Memor
 A2UI Card surfaces, Apartment Discovery, Neighborhood Intelligence, and conversational AI agent.
 """
 
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
