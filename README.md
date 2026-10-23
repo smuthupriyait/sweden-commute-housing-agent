@@ -1,6 +1,6 @@
-# WorkNest Sweden 🇸🇪
+# Sweden Commute & Affordable Housing Finder 🇸🇪
 
-WorkNest Sweden is an agent-first application designed to help workers and newcomers in Sweden find affordable housing within a realistic commute of their workplace.
+An agent-first application designed to help workers and newcomers in Sweden find affordable housing within a realistic commuting distance of their workplace.
 
 ## Core Features
 1. **Explainable Rent Budgeting**: Computes prudent and maximum rent ceilings based on Swedish net take-home salary, fixed expenses, and emergency buffers, cross-checked against standard Swedish cost-of-living guidelines (Konsumentverket reference values).
