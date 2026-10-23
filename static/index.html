@@ -528,6 +528,134 @@
       font-weight: 600;
       color: #fff;
     }
+
+    /* Comprehensive Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      .brand {
+        width: 100%;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+      .header-tagline {
+        font-size: 0.72rem;
+      }
+      header > div:last-child {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      header > div:last-child a.btn {
+        flex: 1;
+        font-size: 0.72rem !important;
+        padding: 0.45rem 0.6rem !important;
+        justify-content: center;
+      }
+      .stage-indicator {
+        font-size: 0.68rem;
+        padding: 0.35rem 0.65rem;
+      }
+      
+      .hero-container {
+        padding: 1.75rem 1rem 1.5rem !important;
+        min-height: auto;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+        line-height: 1.25;
+      }
+      .hero-desc {
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+      .hero-badges-row {
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+      }
+      .hero-feature-badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+      }
+
+      main {
+        padding: 1rem 0.75rem !important;
+        gap: 1.25rem;
+      }
+      .panel {
+        padding: 1rem;
+        border-radius: var(--radius-md);
+      }
+      
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 0.65rem;
+      }
+      .budget-hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .budget-metric-card {
+        padding: 0.65rem 0.7rem;
+      }
+      .budget-metric-value {
+        font-size: 1rem;
+      }
+
+      /* Tabs overflow and scroll smoothly on mobile */
+      .tabs-nav {
+        padding: 0.25rem;
+        gap: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .tab-btn {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.7rem;
+      }
+
+      /* Area cards, apartment cards, and matrix cards */
+      .cards-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .card-photo-wrap {
+        height: 150px;
+      }
+
+      /* Chat container on mobile */
+      .chat-container {
+        height: 420px;
+      }
+      .message {
+        max-width: 92%;
+        font-size: 0.82rem;
+      }
+      .quick-chips {
+        padding: 0.4rem 0.5rem;
+      }
+      .quick-chip {
+        font-size: 0.68rem;
+        padding: 0.2rem 0.5rem;
+      }
+
+      /* Form inputs touched for mobile */
+      input, select {
+        font-size: 16px !important; /* Prevents iOS auto-zoom on input focus */
+        padding: 0.65rem 0.75rem;
+      }
+      .btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
