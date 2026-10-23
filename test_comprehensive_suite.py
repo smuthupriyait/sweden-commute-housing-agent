@@ -65,10 +65,10 @@ def test_3_apartment_search_and_filters():
         assert apt["neighborhood"] in ["Arenastaden", "Råsunda", "Huvudsta", "Bergshamra"]
         assert apt["rent_sek"] > 0
         assert apt["source_url"].startswith("http")
-        assert "T" in apt["last_verified_at"]
+        assert apt["is_sample_data"] is True
         assert apt["nearest_transit_stop"] != ""
         assert len(apt["utilities_included"]) > 0
-    print("PASS: Solna apartment search returns all 4 Solna neighborhoods with full provenance.")
+    print("PASS: Solna apartment search returns all 4 Solna neighborhoods as illustrative samples.")
 
     # 3.3 Strict rent & room filters
     r_filtered = client.post('/api/apartments/search', json={
@@ -127,10 +127,10 @@ def test_5_memory_bank_crud():
 def test_6_zero_hallucination_transparency():
     res = client.post('/api/apartments/search', json={"municipality": "Solna"})
     data = res.json()
-    assert "Data Source Notice" in data["data_transparency_notice"]
+    assert "Illustrative Sample Notice" in data["data_transparency_notice"]
     assert "verified_search_links" in data
     assert len(data["verified_search_links"]) >= 3
-    print("PASS: Zero-hallucination compliance notice and direct Swedish portal links verified.")
+    print("PASS: Illustrative sample compliance notice and Housing Search Links verified.")
 
 def test_7_exact_financial_formula():
     # Strict Priority 1 verification:

@@ -60,213 +60,220 @@ OFFICIAL_HOUSING_SERVICES = {
 SAMPLE_REFERENCE_APARTMENTS = [
     {
         "id": "SAMPLE-SOL-01",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Bright 2-Room in Arenastaden near Solna Station",
+        "is_illustrative_example": True,
+        "title": "Illustrative 2-Room Layout in Arenastaden near Solna Station",
         "municipality": "Solna",
         "neighborhood": "Arenastaden",
-        "address": "Evenemangsgatan 24, Solna",
+        "address": "Representative Area: Evenemangsgatan, Arenastaden",
         "rent_sek": 12800,
         "rooms": 2.0,
         "size_sqm": 54,
-        "housing_type": "Second-hand (Andrahand / Agency Verified)",
-        "lease_duration": "12 months with extension option",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 12 months",
         "deposit_sek": 12800,
-        "deposit_terms": "1 month deposit held in escrow via Samtrygg",
-        "utilities_included": ["District heating (fjärrvärme)", "Cold & hot water", "1000/1000 Mbps Fiber broadband"],
-        "utilities_excluded": ["Household electricity (approx. 350 SEK/mo)"],
-        "available_from": "Immediate / 1st of next month",
-        "nearest_transit_stop": "Solna Station (Pendeltåg & Tvärbanan, 300m walk)",
+        "deposit_terms": "Illustrative: 1 month security deposit held in escrow",
+        "utilities_included": ["District heating (typical)", "Water (typical)", "Broadband (typical)"],
+        "utilities_excluded": ["Household electricity (~350 SEK/mo estimated)"],
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Solna Station (Pendeltåg & Tvärbanan, ~300m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 7,
             "Kista Science City": 14,
             "Solna Arenastaden / Hagastaden": 3,
             "Södertälje (Scania/AstraZeneca)": 48
         },
-        "source": "Samtrygg (Marketplace Search)",
+        "source": "Samtrygg Portal (Market Reference)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Solna",
-        "last_verified_at": "2026-10-23T12:00:00Z",
-        "features": ["Balcony facing southwest", "Modern dishwasher & in-unit washer/dryer", "Elevator access", "Bicycle storage"]
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Balcony layout", "Modern kitchen appliances", "Elevator access", "Bicycle storage"]
     },
     {
         "id": "SAMPLE-SOL-02",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Classic Turn-of-Century 1.5-Room in Råsunda",
+        "is_illustrative_example": True,
+        "title": "Illustrative 1.5-Room Layout in Råsunda",
         "municipality": "Solna",
         "neighborhood": "Råsunda",
-        "address": "Stråket 5, Solna",
+        "address": "Representative Area: Stråket, Råsunda",
         "rent_sek": 9950,
         "rooms": 1.5,
         "size_sqm": 43,
-        "housing_type": "Second-hand (Brf Board Approved Sublet)",
-        "lease_duration": "1 year fixed",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 1 year fixed",
         "deposit_sek": 9950,
-        "deposit_terms": "1 month security deposit with Qasa guarantee",
-        "utilities_included": ["Heating", "Water", "Basic TV"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)"],
         "utilities_excluded": ["Electricity", "Home insurance (Hemförsäkring)"],
-        "available_from": "Within 30 days",
-        "nearest_transit_stop": "Solna Centrum Metro (Blue line, 450m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Solna Centrum Metro (Blue line, ~450m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 10,
             "Kista Science City": 12,
             "Solna Arenastaden / Hagastaden": 8,
             "Södertälje (Scania/AstraZeneca)": 52
         },
-        "source": "Qasa / Blocket Bostad",
-        "source_url": "https://qasa.se/sv/find-home/solna",
-        "last_verified_at": "2026-10-23T14:30:00Z",
-        "features": ["Original 2.8m ceiling height", "Preserved herringbone parquet floor", "French balcony", "Quiet courtyard view"]
+        "source": "Qasa / Blocket Bostad (Market Reference)",
+        "source_url": "https://qasa.se/sv/find-home?q=Solna",
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["High ceiling character", "Parquet floor", "French balcony layout", "Courtyard aspect"]
     },
     {
         "id": "SAMPLE-SOL-03",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Waterfront 2-Room in Huvudsta near Ulvsundasjön",
+        "is_illustrative_example": True,
+        "title": "Illustrative 2-Room Layout in Huvudsta near Ulvsundasjön",
         "municipality": "Solna",
         "neighborhood": "Huvudsta",
-        "address": "Storgatan 68, Solna",
+        "address": "Representative Area: Storgatan, Huvudsta",
         "rent_sek": 11200,
         "rooms": 2.0,
         "size_sqm": 50,
-        "housing_type": "Second-hand (Verified Sublet)",
-        "lease_duration": "Flexible / Long term",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 12 months",
         "deposit_sek": 11200,
-        "deposit_terms": "1 month refundable deposit",
-        "utilities_included": ["Heating", "Water", "Storeroom (källarförråd)"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)", "Basement storeroom"],
         "utilities_excluded": ["Electricity", "Broadband"],
-        "available_from": "Immediate",
-        "nearest_transit_stop": "Huvudsta Metro Station (Blue line, 350m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Huvudsta Metro Station (Blue line, ~350m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 9,
             "Kista Science City": 15,
             "Solna Arenastaden / Hagastaden": 12,
             "Södertälje (Scania/AstraZeneca)": 51
         },
-        "source": "Samtrygg (Marketplace Search)",
+        "source": "Samtrygg Portal (Market Reference)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Huvudsta",
-        "last_verified_at": "2026-10-23T11:15:00Z",
-        "features": ["3 min walk to lake promenade & outdoor pool", "Balcony with afternoon sun", "Renovated 2022 kitchen"]
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Near lake promenade", "Balcony layout", "Updated kitchen"]
     },
     {
         "id": "SAMPLE-SOL-04",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Tranquil 1-Room Studio in Green Bergshamra",
+        "is_illustrative_example": True,
+        "title": "Illustrative 1-Room Studio Layout in Bergshamra",
         "municipality": "Solna",
         "neighborhood": "Bergshamra",
-        "address": "Björnstigen 18, Solna",
+        "address": "Representative Area: Björnstigen, Bergshamra",
         "rent_sek": 8700,
         "rooms": 1.0,
         "size_sqm": 34,
-        "housing_type": "Corporate / Academic Verified Sublet",
-        "lease_duration": "6 to 24 months",
+        "housing_type": "Corporate / Academic (Illustrative Terms)",
+        "lease_duration": "Illustrative: Flexible term",
         "deposit_sek": 8700,
-        "deposit_terms": "1 month deposit",
-        "utilities_included": ["All utilities included: Heating, Water, Electricity, Wifi"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)", "Wifi (typical)"],
         "utilities_excluded": [],
-        "available_from": "Immediate",
-        "nearest_transit_stop": "Bergshamra Metro Station (Red line 14, 250m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Bergshamra Metro Station (Red line 14, ~250m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 11,
             "Kista Science City": 22,
             "Solna Arenastaden / Hagastaden": 14,
             "Södertälje (Scania/AstraZeneca)": 55
         },
-        "source": "Blocket Bostad / Qasa",
-        "source_url": "https://bostad.blocket.se/sv/bostad/solna",
-        "last_verified_at": "2026-10-23T15:00:00Z",
-        "features": ["All-inclusive utilities", "Green park outside door", "Near Brunnsviken swimming bay", "Direct Red Line to KTH / T-Centralen"]
+        "source": "Blocket Bostad / Qasa (Market Reference)",
+        "source_url": "https://bostad.blocket.se/sv/bostad?q=Solna",
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Green park surroundings", "Near Brunnsviken bay", "Direct Red Line connection to T-Centralen"]
     },
     {
         "id": "SAMPLE-SBY-05",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Modern 2-Room in Urban Centrala Sundbyberg",
+        "is_illustrative_example": True,
+        "title": "Illustrative 2-Room Layout in Centrala Sundbyberg",
         "municipality": "Sundbyberg",
         "neighborhood": "Centrala Sundbyberg",
-        "address": "Landsvägen 39, Sundbyberg",
+        "address": "Representative Area: Landsvägen, Sundbyberg",
         "rent_sek": 11900,
         "rooms": 2.0,
         "size_sqm": 48,
-        "housing_type": "Second-hand (Verified Sublet)",
-        "lease_duration": "12 months",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 12 months",
         "deposit_sek": 11900,
-        "deposit_terms": "Standard 1 month deposit in escrow",
-        "utilities_included": ["District heating", "Water", "Fiber 250 Mbps"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)", "Broadband (typical)"],
         "utilities_excluded": ["Household electricity"],
-        "available_from": "Next month",
-        "nearest_transit_stop": "Sundbyberg Station (Metro, Pendeltåg & Tvärbanan, 150m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Sundbyberg Station (Metro, Pendeltåg & Tvärbanan, ~150m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 8,
             "Kista Science City": 9,
             "Solna Arenastaden / Hagastaden": 7,
             "Södertälje (Scania/AstraZeneca)": 49
         },
-        "source": "Samtrygg (Marketplace Search)",
+        "source": "Samtrygg Portal (Market Reference)",
         "source_url": "https://www.samtrygg.se/rental/search?q=Sundbyberg",
-        "last_verified_at": "2026-10-23T09:30:00Z",
-        "features": ["Super transit hub 2 min away", "Surrounded by restaurants & bakeries", "Balcony", "Floor heating in bathroom"]
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Transit corridor access", "Nearby shops and services", "Balcony layout"]
     },
     {
         "id": "SAMPLE-KGH-06",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Compact Studio in Kungsholmen near Norrmälarstrand",
+        "is_illustrative_example": True,
+        "title": "Illustrative 1-Room Studio in Kungsholmen",
         "municipality": "Stockholm",
         "neighborhood": "Kungsholmen",
-        "address": "Pontonjärgatan 14, Stockholm",
+        "address": "Representative Area: Pontonjärgatan, Kungsholmen",
         "rent_sek": 13900,
         "rooms": 1.0,
         "size_sqm": 33,
-        "housing_type": "Second-hand (Corporate Sublet)",
-        "lease_duration": "6 to 18 months",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 12 months",
         "deposit_sek": 13900,
-        "deposit_terms": "1 month security deposit",
-        "utilities_included": ["Heating", "Water", "High-speed Internet"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)", "Internet (typical)"],
         "utilities_excluded": ["Electricity"],
-        "available_from": "Immediate",
-        "nearest_transit_stop": "Fridhemsplan Metro (Blue & Green lines, 400m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Fridhemsplan Metro (Blue & Green lines, ~400m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 4,
             "Kista Science City": 16,
             "Solna Arenastaden / Hagastaden": 10,
             "Södertälje (Scania/AstraZeneca)": 44
         },
-        "source": "Qasa / Blocket Bostad",
-        "source_url": "https://qasa.se/sv/find-home/stockholm",
-        "last_verified_at": "2026-10-23T13:45:00Z",
-        "features": ["Prime inner-city location", "2 min walk to Norrmälarstrand waterfront", "Elevator", "Freshly painted"]
+        "source": "Qasa / Blocket Bostad (Market Reference)",
+        "source_url": "https://qasa.se/sv/find-home?q=Stockholm",
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Inner-city location", "Near Norrmälarstrand waterfront", "Elevator access"]
     },
     {
         "id": "SAMPLE-SOL-07",
-        "data_classification": "Curated Sample Listing",
+        "data_classification": "Curated Sample Property",
         "is_sample_data": True,
-        "title": "Spacious 3-Room Family Flat in Helenelund / Tureberg",
+        "is_illustrative_example": True,
+        "title": "Illustrative 3-Room Layout in Helenelund / Tureberg",
         "municipality": "Sollentuna",
         "neighborhood": "Helenelund / Tureberg",
-        "address": "Svalgången 8, Sollentuna",
+        "address": "Representative Area: Svalgången, Sollentuna",
         "rent_sek": 12500,
         "rooms": 3.0,
         "size_sqm": 72,
-        "housing_type": "Second-hand (Brf Sublet with landlord permission)",
-        "lease_duration": "12–24 months",
+        "housing_type": "Second-hand (Illustrative Sublet Terms)",
+        "lease_duration": "Illustrative: 12 months",
         "deposit_sek": 12500,
-        "deposit_terms": "1 month deposit with bank confirmation",
-        "utilities_included": ["Heating", "Water", "Parking space included"],
+        "deposit_terms": "Illustrative: 1 month security deposit",
+        "utilities_included": ["Heating (typical)", "Water (typical)"],
         "utilities_excluded": ["Electricity", "Internet"],
-        "available_from": "Within 45 days",
-        "nearest_transit_stop": "Helenelund Station (Pendeltåg, 500m walk)",
+        "available_from": "Illustrative move-in date",
+        "nearest_transit_stop": "Helenelund Station (Pendeltåg, ~500m walk)",
         "commute_to_hubs": {
             "Stockholm Central / City": 14,
             "Kista Science City": 6,
             "Solna Arenastaden / Hagastaden": 9,
             "Södertälje (Scania/AstraZeneca)": 54
         },
-        "source": "Blocket Bostad / Qasa",
-        "source_url": "https://bostad.blocket.se/sv/bostad/sollentuna",
-        "last_verified_at": "2026-10-23T10:00:00Z",
-        "features": ["Large glazed balcony", "Dedicated parking space", "Walkable footbridge to Kista", "Child-friendly courtyard"]
+        "source": "Blocket Bostad / Qasa (Market Reference)",
+        "source_url": "https://bostad.blocket.se/sv/bostad?q=Sollentuna",
+        "sample_data_note": "Sample values for modeling and comparison only; not a currently available vacancy",
+        "features": ["Glazed balcony layout", "Footbridge access to Kista", "Courtyard surroundings"]
     }
 ]
 
@@ -353,8 +360,9 @@ def search_apartment_listings(
             "match_score": total_match_score,
             "budget_delta_sek": rent_diff,
             "match_explanation": (
-                f"Match Score: {total_match_score}/100. Rent is {budget_headroom_note}. "
-                f"Estimated travel time to {workplace} is ~{commute_mins} minutes via {apt['nearest_transit_stop']}."
+                f"Illustrative Match Score: {total_match_score}/100. Rent is {budget_headroom_note}. "
+                f"Estimated travel time to {workplace} is ~{commute_mins} minutes via {apt['nearest_transit_stop']} "
+                f"(includes scheduled SL line travel + station walk; excludes transfer waits and peak disruptions)."
             )
         }
         matched.append(matched_item)
@@ -366,31 +374,29 @@ def search_apartment_listings(
     muni_key = municipality if municipality in OFFICIAL_HOUSING_SERVICES else "Stockholm"
     official_queue = OFFICIAL_HOUSING_SERVICES.get(muni_key, OFFICIAL_HOUSING_SERVICES["Stockholm"])
 
-    # Build direct deep search links targeting real portals
+    # Direct links to public Swedish portals and queues
     query_str = urllib.parse.quote(f"{municipality or 'Stockholm'} {neighborhood or ''}".strip())
-    max_p = str(int(max_rent_sek)) if max_rent_sek else "15000"
-    min_r = str(int(min_rooms)) if min_rooms else "1"
 
     external_search_links = [
         {
-            "service": "Blocket Bostad (Live Sublet Search)",
-            "url": f"https://bostad.blocket.se/sv/bostad?q={query_str}&maxPrice={max_p}&minRooms={min_r}",
-            "description": f"View live available listings in {municipality or 'Stockholm'} under {max_p} SEK"
+            "service": "Blocket Bostad",
+            "url": f"https://bostad.blocket.se/sv/bostad?q={query_str}",
+            "description": f"Search live second-hand and first-hand listings in {municipality or 'Stockholm'}"
         },
         {
-            "service": "Samtrygg (Fraud-Protected Sublets)",
+            "service": "Samtrygg",
             "url": f"https://www.samtrygg.se/rental/search?q={query_str}",
-            "description": "Browse private rental listings with tenant deposit guarantees"
+            "description": "Browse private sublets with tenant deposit guarantees"
         },
         {
-            "service": "Qasa (Direct Landlord Rentals)",
+            "service": "Qasa",
             "url": f"https://qasa.se/sv/find-home?q={query_str}",
-            "description": "Direct rental marketplace powering Blocket Bostad"
+            "description": "Browse landlord rental listings in Sweden"
         },
         {
             "service": official_queue["name"],
             "url": official_queue["url"],
-            "description": f"Official municipal distribution service ({official_queue['type']})"
+            "description": f"Official municipal housing queue ({official_queue['type']})"
         }
     ]
 
@@ -401,10 +407,9 @@ def search_apartment_listings(
         "verified_search_links": external_search_links,
         "is_sample_inventory": True,
         "data_transparency_notice": (
-            "Data Source Notice: The listings above are curated representative sample properties illustrating "
-            "typical layouts, rents, and transit connections in these neighborhoods. Live Swedish rental portals "
-            "(Blocket Bostad, Qasa, Samtrygg) do not offer open public REST APIs; please use the live portal links "
-            "provided below to browse and apply for current real-time vacancies."
+            "Illustrative Sample Notice: The properties listed above are illustrative sample layouts used for modeling "
+            "typical price levels, space, and transit connections in these neighborhoods. They do not represent real-time "
+            "vacancies. For real-time applications and verified queues, use the Housing Search Links below."
         )
     }
 

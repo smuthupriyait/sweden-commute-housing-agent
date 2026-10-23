@@ -570,9 +570,21 @@
           </div>
         </div>
         <div class="memory-list" id="memoryList">
-          <div>• User: <span style="color:#fff;">default_user</span></div>
-          <div>• Saved criteria: <span id="memoryFactsCount" style="color:#38bdf8;">Loading...</span></div>
-          <div id="memoryLastNote" style="font-style:italic;">Loading stored profile...</div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:var(--text-muted);">Saved criteria:</span>
+            <span id="memoryFactsCount" style="color:#38bdf8; font-weight:600;">Loading...</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:var(--text-muted);">Target Hub:</span>
+            <span id="memorySavedWorkplace" style="color:#fff; font-weight:600;">Stockholm Central</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:var(--text-muted);">Target Rent:</span>
+            <span id="memorySavedRent" style="color:#fff; font-weight:600;">12,500 SEK</span>
+          </div>
+          <div id="memoryLastNote" style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.04); padding:0.4rem; border-radius:6px; margin-top:0.2rem; font-style:italic;">
+            Loading stored profile...
+          </div>
         </div>
       </div>
     </div>
@@ -655,7 +667,7 @@
 
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">
             <div id="aptResultsCount" style="font-size:0.85rem; font-weight:700; color:#38bdf8;">
-              Searching verified inventory...
+              Loading sample properties...
             </div>
             <button class="btn btn-secondary" style="padding:0.4rem 0.9rem; font-size:0.8rem;" onclick="searchApartments()">
               🔄 Refresh Listings
@@ -666,14 +678,14 @@
         <!-- Apartment Cards Grid -->
         <div class="ranking-grid" id="apartmentCardsGrid">
           <div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
-            Loading verified apartments...
+            Loading illustrative sample properties...
           </div>
         </div>
 
-        <!-- Verified Direct Search Links -->
+        <!-- Housing Search Links -->
         <div style="background:var(--surface); border:1px solid var(--surface-light); border-radius:10px; padding:1.15rem; margin-top:0.5rem;">
           <div style="font-weight:700; color:#fff; font-size:0.95rem; margin-bottom:0.6rem;">
-            🔗 Verified Deep-Filtered Search Links (Official Swedish Portals)
+            🔗 Housing Search Links
           </div>
           <div id="verifiedPortalLinks" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:0.75rem;">
             <!-- Populated via JS -->
@@ -863,8 +875,14 @@
         
         const notes = currentProfile.notes || [];
         const count = notes.length;
-        document.getElementById('memoryFactsCount').innerText = count + ' preferences';
+        document.getElementById('memoryFactsCount').innerText = count + ' criteria';
         
+        const wpElem = document.getElementById('memorySavedWorkplace');
+        if (wpElem) wpElem.innerText = currentProfile.workplace || 'Stockholm Central';
+
+        const rentElem = document.getElementById('memorySavedRent');
+        if (rentElem) rentElem.innerText = (currentProfile.max_rent_sek ? Number(currentProfile.max_rent_sek).toLocaleString() + ' SEK' : '12,500 SEK');
+
         const chatCount = document.getElementById('chatTabMemoryCount');
         if (chatCount) chatCount.innerText = count + ' saved preferences';
 
@@ -1032,7 +1050,7 @@
         const data = await res.json();
         renderApartmentCards(data.listings || []);
         renderPortalLinks(data.verified_search_links || []);
-        document.getElementById('aptResultsCount').innerText = 'Found ' + data.listings_count + ' verified apartments matching filters';
+        document.getElementById('aptResultsCount').innerText = data.listings_count + ' illustrative sample properties';
       } catch (e) {
         console.error('Apartment search error:', e);
       }
@@ -1065,24 +1083,25 @@
         card.innerHTML = 
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">' +
             '<span class="sample-tag">Curated Sample Property</span>' +
-            '<span class="a2ui-badge-top" style="position:static;">Match ' + (apt.match_score || 85) + '/100</span>' +
+            '<span class="a2ui-badge-top" style="position:static;">Illustrative Match ' + (apt.match_score || 85) + '/100</span>' +
           '</div>' +
-          '<div class="a2ui-card-title">' + (apt.title || 'Apartment') + '</div>' +
-          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Address provided on application') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Asking Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo</span></div>' +
+          '<div class="a2ui-card-title">' + (apt.title || 'Sample Apartment') + '</div>' +
+          '<div style="font-size:0.8rem; color:#38bdf8; font-weight:600;">' + (apt.address || 'Representative Area') + ' (' + apt.neighborhood + ', ' + apt.municipality + ')</div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Sample Asking Rent:</span><span class="stat-mono highlight-yellow">' + Number(apt.rent_sek || 0).toLocaleString() + ' SEK/mo*</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Size & Rooms:</span><span class="stat-mono">' + apt.rooms + ' rooms (' + apt.size_sqm + ' m²)</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Travel Time:</span><span class="stat-mono highlight-green">' + apt.calculated_commute_minutes + ' mins to workplace*</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Transit Stop:</span><span style="font-size:0.78rem; text-align:right;">' + transitStop + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Type:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Second-hand sublet') + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Security Deposit:</span><span style="font-size:0.78rem;">' + depositVal + '</span></div>' +
-          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Utilities Included:</span><span style="font-size:0.75rem; color:#cbd5e1; text-align:right;">' + utilitiesBadge + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Estimated Transit & Walk:</span><span class="stat-mono highlight-green">' + apt.calculated_commute_minutes + ' mins to workplace</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Commute Scope:</span><span style="font-size:0.75rem; color:#94a3b8; text-align:right;">Includes transit line + station walk.<br>Excludes door-to-door wait & transfers.</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Nearest Stop:</span><span style="font-size:0.78rem; text-align:right;">' + transitStop + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Housing Type:</span><span style="font-size:0.78rem;">' + (apt.housing_type || 'Illustrative sublet terms') + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Sample Deposit:</span><span style="font-size:0.78rem;">' + depositVal + '</span></div>' +
+          '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Utilities (Typical):</span><span style="font-size:0.75rem; color:#cbd5e1; text-align:right;">' + utilitiesBadge + '</span></div>' +
           '<div class="a2ui-metric-row"><span style="color:var(--text-muted);">Move-in / Lease:</span><span style="font-size:0.78rem;">' + availableVal + '</span></div>' +
           '<div style="background:rgba(2,132,199,0.06); padding:0.5rem; border-radius:6px; font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">' +
-            '💡 <strong>Match Assessment:</strong> ' + (apt.match_explanation || 'Good fit for stated budget and commute preferences.') +
-            '<div style="font-size:0.7rem; color:#64748b; margin-top:0.25rem;">*Transit time includes scheduled SL travel + estimated walking. Excludes peak delays and transfer wait.</div>' +
+            '💡 <strong>Evaluation Note:</strong> ' + (apt.match_explanation || 'Illustrative sample layout for area comparison.') +
+            '<div style="font-size:0.7rem; color:#f59e0b; margin-top:0.25rem;">⚠️ Sample listing for comparison. Values are not real-time listing facts. Use search portals below for live applications.</div>' +
           '</div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.4rem; font-size:0.72rem; color:var(--text-muted);">' +
-            '<span>Source: ' + sourceVal + lastChecked + '</span>' +
+            '<span>Market Reference: ' + sourceVal + '</span>' +
             '<a href="' + (apt.source_url || '#') + '" target="_blank" class="btn" style="padding:0.35rem 0.75rem; font-size:0.75rem;">Search Portal ↗</a>' +
           '</div>';
 
