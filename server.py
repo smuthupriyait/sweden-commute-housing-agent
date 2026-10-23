@@ -292,7 +292,8 @@ def chat_with_agent(req: ChatRequest):
         raise HTTPException(status_code=500, detail=f"Agent error: {str(e)}")
 
 # Mount static files
-app.mount("/", StaticFiles(directory="/config/Desktop/BuildWithGemini/static", html=True), name="static")
+STATIC_DIR = os.environ.get("STATIC_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"))
+app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
 
 if __name__ == "__main__":
     import uvicorn
