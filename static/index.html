@@ -7,26 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Refined Light Scandinavian Theme: warm off-white, white surfaces, dark navy/charcoal typography, restrained forest-green accents */
-      --bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --surface: #f1f4f8;
-      --surface-light: #e2e8f0;
-      --surface-subtle: #f8fafc;
-      --accent: #1e4d38; /* Restrained Forest Green */
-      --accent-hover: #163a2a;
-      --accent-light: #2d6a4f;
-      --accent-soft: rgba(30, 77, 56, 0.08);
-      --yellow: #b45309; /* Warm Amber */
-      --emerald: #1e4d38; /* Forest Green */
-      --navy: #0f172a; /* Deep Charcoal / Navy */
-      --text: #1e293b; /* Charcoal body text */
-      --text-muted: #64748b; /* Slate muted */
-      --text-subtle: #94a3b8; /* Subtle gray */
-      --border: #e2e8f0;
-      --border-subtle: #edf2f7;
-      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --surface: #1e293b;
+      --surface-light: #2d3748;
+      --surface-subtle: rgba(255, 255, 255, 0.03);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #60a5fa;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --yellow: #fbbf24;
+      --emerald: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --border: #1e293b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 14px;
@@ -45,8 +41,8 @@
     
     /* Top Header */
     header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
+      background: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
       padding: 0.85rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -54,78 +50,61 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(12px);
     }
     .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .brand-mark {
-      background: var(--accent);
-      color: #ffffff;
+      background: var(--accent-soft);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      color: var(--accent-light);
       padding: 0.35rem 0.65rem;
       border-radius: var(--radius-sm);
       font-weight: 700;
       font-size: 0.85rem;
-      letter-spacing: 0.02em;
     }
-    .brand-title { font-size: 1.12rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+    .brand-title { font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     .header-tagline { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* Refined Scandinavian Hero */
+    /* Minimal Scandinavian Hero */
     .hero-container {
-      border-bottom: 1px solid var(--border);
-      padding: 1.75rem 2rem 1.5rem;
-      background: #ffffff;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 2.25rem 2rem 1.75rem;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.25) 0%, rgba(11, 15, 25, 0) 100%);
     }
     .hero-inner {
       max-width: 1440px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
     .hero-title {
       font-size: 1.85rem;
       font-weight: 700;
-      color: var(--navy);
+      color: #ffffff;
       letter-spacing: -0.02em;
       margin-bottom: 0.35rem;
     }
     .hero-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 720px;
-      line-height: 1.5;
-    }
-    .hero-visual-box {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-    .hero-banner-thumb {
-      width: 220px;
-      height: 96px;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-    @media (max-width: 860px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-banner-thumb { display: none; }
+      max-width: 680px;
+      line-height: 1.45;
     }
     .stage-indicator {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.45rem 0.95rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 1rem;
       border-radius: 30px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
-    .stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .stage-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-light); }
 
     /* Main Grid Layout */
     main {
@@ -146,16 +125,15 @@
 
     .panel {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 1.35rem;
       display: flex;
       flex-direction: column;
       gap: 1.15rem;
-      box-shadow: var(--shadow-sm);
     }
     .panel-header {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
@@ -164,17 +142,17 @@
     .panel-title {
       font-size: 0.95rem;
       font-weight: 700;
-      color: var(--navy);
+      color: #fff;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       letter-spacing: -0.01em;
     }
     .step-badge {
       font-size: 0.7rem;
       font-weight: 700;
       background: var(--accent-soft);
-      color: var(--accent);
+      color: var(--accent-light);
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
     }
@@ -186,16 +164,16 @@
       gap: 0.35rem;
     }
     label {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
     input, select {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      color: var(--navy);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
       padding: 0.6rem 0.75rem;
       border-radius: var(--radius-sm);
       font-size: 0.88rem;
@@ -205,7 +183,7 @@
     }
     input:focus, select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(30, 77, 56, 0.15);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
     }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
@@ -213,7 +191,7 @@
     /* Clean Scandinavian Buttons */
     .btn {
       background: var(--accent);
-      color: #ffffff;
+      color: #fff;
       border: 1px solid transparent;
       padding: 0.65rem 1.15rem;
       border-radius: var(--radius-sm);
@@ -229,11 +207,11 @@
     }
     .btn:hover { background: var(--accent-hover); }
     .btn-secondary {
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
       color: var(--text);
     }
-    .btn-secondary:hover { background: var(--surface); border-color: #cbd5e1; }
+    .btn-secondary:hover { background: var(--surface-light); }
     .btn-ghost {
       background: transparent;
       border: 1px solid transparent;
@@ -241,13 +219,13 @@
       padding: 0.35rem 0.6rem;
       font-size: 0.75rem;
     }
-    .btn-ghost:hover { color: var(--navy); background: var(--surface); }
+    .btn-ghost:hover { color: #fff; background: var(--surface-subtle); }
     .btn-danger {
       background: transparent;
-      border: 1px solid #fecaca;
-      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
     }
-    .btn-danger:hover { background: #fef2f2; }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.1); }
 
     /* Stage A: Prominent 4-Metric Budget Cards */
     .budget-hero-grid {
@@ -257,8 +235,8 @@
       margin-top: 0.25rem;
     }
     .budget-metric-card {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       padding: 0.75rem 0.85rem;
       display: flex;
@@ -274,17 +252,17 @@
     }
     .budget-metric-value {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.12rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--navy);
+      color: #fff;
     }
-    .budget-metric-value.highlight-prudent { color: var(--accent); }
+    .budget-metric-value.highlight-prudent { color: var(--yellow); }
     .budget-metric-value.highlight-leftover { color: var(--emerald); }
 
     /* Collapsible Details Drawer */
     details.info-drawer {
       background: var(--surface-subtle);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       font-size: 0.78rem;
       overflow: hidden;
@@ -293,18 +271,18 @@
       padding: 0.6rem 0.85rem;
       cursor: pointer;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--accent-light);
       display: flex;
       align-items: center;
       justify-content: space-between;
       user-select: none;
     }
     details.info-drawer summary:hover {
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.02);
     }
     .drawer-content {
       padding: 0.75rem 0.85rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-subtle);
       color: var(--text-muted);
       line-height: 1.5;
       display: flex;
@@ -323,10 +301,10 @@
       display: flex;
       gap: 0.35rem;
       background: var(--surface);
-      padding: 0.35rem;
+      padding: 0.3rem;
       border-radius: var(--radius-md);
       overflow-x: auto;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
     }
     .tab-btn {
       background: transparent;
@@ -341,9 +319,9 @@
       white-space: nowrap;
     }
     .tab-btn.active {
-      background: #ffffff;
-      color: var(--navy);
-      box-shadow: var(--shadow-sm);
+      background: var(--card-bg);
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
     }
     .tab-pane { display: none; flex-direction: column; gap: 1rem; }
     .tab-pane.active { display: flex; }
@@ -355,25 +333,16 @@
       gap: 1rem;
     }
     .scandi-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
+      padding: 1.1rem;
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
-      box-shadow: var(--shadow-sm);
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color 0.15s;
     }
-    .scandi-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
-    .card-media-banner {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      margin-bottom: 0.2rem;
-    }
+    .scandi-card:hover { border-color: rgba(96, 165, 250, 0.4); }
     .scandi-header {
       display: flex;
       justify-content: space-between;
@@ -383,7 +352,7 @@
     .scandi-title {
       font-size: 0.98rem;
       font-weight: 700;
-      color: var(--navy);
+      color: #fff;
       line-height: 1.3;
     }
     .scandi-tag {
@@ -394,19 +363,14 @@
       white-space: nowrap;
     }
     .tag-hypothetical {
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      color: #92400e;
-    }
-    .tag-verified {
-      background: #e0e7ff;
-      border: 1px solid #c7d2fe;
-      color: #3730a3;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
     }
     .tag-rank {
       background: var(--accent-soft);
-      border: 1px solid rgba(30, 77, 56, 0.2);
-      color: var(--accent);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: var(--accent-light);
       font-family: 'JetBrains Mono', monospace;
     }
     .stat-mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
@@ -414,16 +378,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       padding-bottom: 0.25rem;
-      border-bottom: 1px dashed var(--border-subtle);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
     }
     .scandi-metric-row:last-of-type { border-bottom: none; }
 
     /* Expandable "View details" Drawer for Secondary Property Data */
     details.card-details {
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
+      background: rgba(0, 0, 0, 0.15);
       border-radius: var(--radius-sm);
       margin-top: 0.2rem;
       font-size: 0.74rem;
@@ -435,10 +398,10 @@
       font-weight: 600;
       user-select: none;
     }
-    details.card-details summary:hover { color: var(--navy); }
+    details.card-details summary:hover { color: #fff; }
     .card-details-body {
       padding: 0.5rem 0.6rem 0.65rem;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
@@ -451,11 +414,10 @@
       display: flex;
       flex-direction: column;
       height: 500px;
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
     }
     .chat-messages {
       flex: 1;
@@ -464,7 +426,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.85rem;
-      background: var(--surface-subtle);
     }
     .message {
       max-width: 84%;
@@ -476,41 +437,40 @@
     .message.user {
       align-self: flex-end;
       background: var(--accent);
-      color: #ffffff;
+      color: #fff;
     }
     .message.agent {
       align-self: flex-start;
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
       color: var(--text);
-      box-shadow: var(--shadow-sm);
     }
     .message-time { font-size: 0.65rem; opacity: 0.65; margin-top: 0.25rem; text-align: right; }
     .chat-input-row {
       display: flex;
       padding: 0.75rem;
-      background: #ffffff;
-      border-top: 1px solid var(--border);
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-subtle);
       gap: 0.5rem;
     }
     .chat-input-row input { flex: 1; }
-    .quick-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.5rem 0.75rem; background: var(--surface); border-top: 1px solid var(--border-subtle); }
+    .quick-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.5rem 0.75rem; background: rgba(0, 0, 0, 0.2); }
     .quick-chip {
       font-size: 0.72rem;
-      background: #ffffff;
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
       padding: 0.25rem 0.6rem;
       border-radius: 14px;
       cursor: pointer;
       color: var(--text-muted);
       transition: border-color 0.15s, color 0.15s;
     }
-    .quick-chip:hover { border-color: var(--accent); color: var(--navy); }
+    .quick-chip:hover { border-color: var(--accent-light); color: #fff; }
 
     /* Clean Badge for Saved Preferences */
     .saved-prefs-box {
       background: var(--surface-subtle);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 0.85rem;
       display: flex;
@@ -522,8 +482,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 700;
-      color: var(--navy);
+      font-weight: 600;
+      color: #fff;
     }
   </style>
 </head>
@@ -549,9 +509,6 @@
         <p class="hero-desc">
           Understand what rent you can afford, discover suitable areas within your commute corridor, and find where to search for housing in Sweden.
         </p>
-      </div>
-      <div class="hero-visual-box">
-        <img src="/images/hero_banner.png" alt="Sweden Transit & Housing Map" class="hero-banner-thumb">
       </div>
     </div>
   </div>
@@ -685,17 +642,17 @@
         </div>
         <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
           <span>Target Hub:</span>
-          <span id="memorySavedWorkplace" style="color:var(--navy); font-weight:600;">Stockholm Central</span>
+          <span id="memorySavedWorkplace" style="color:#fff; font-weight:600;">Stockholm Central</span>
         </div>
         <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
           <span>Target Rent:</span>
-          <span id="memorySavedRent" style="color:var(--navy); font-weight:600;">12,500 SEK</span>
+          <span id="memorySavedRent" style="color:#fff; font-weight:600;">12,500 SEK</span>
         </div>
         <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.75rem;">
           <span>Saved Criteria:</span>
-          <span id="memoryFactsCount" style="color:var(--accent); font-weight:600;">Loading...</span>
+          <span id="memoryFactsCount" style="color:var(--accent-light); font-weight:600;">Loading...</span>
         </div>
-        <div id="memoryLastNote" style="font-size:0.72rem; color:var(--text-muted); background:var(--surface); border:1px solid var(--border-subtle); padding:0.4rem 0.55rem; border-radius:4px; font-style:italic;">
+        <div id="memoryLastNote" style="font-size:0.72rem; color:var(--text-subtle); background:rgba(0,0,0,0.2); padding:0.35rem 0.5rem; border-radius:4px; font-style:italic;">
           Loading stored preferences...
         </div>
       </div>
@@ -713,8 +670,8 @@
 
       <!-- STAGE B: RECOMMENDED AREAS -->
       <div id="tab-areas" class="tab-pane active">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.65rem 0.95rem; border-radius:var(--radius-sm); font-size:0.8rem; border:1px solid var(--border);">
-          <div id="rankingSummary" style="font-weight:700; color:var(--navy);">Calculating optimal areas...</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.65rem 0.95rem; border-radius:var(--radius-sm); font-size:0.8rem; border:1px solid var(--border-subtle);">
+          <div id="rankingSummary" style="font-weight:600; color:#fff;">Calculating optimal areas...</div>
           <div style="color:var(--text-muted); font-size:0.74rem;">Weighted by commute efficiency, regulated SCB rent, and municipal tax</div>
         </div>
 
@@ -817,20 +774,14 @@
 
       <!-- TAB 3: NEIGHBORHOOD EXPLORER -->
       <div id="tab-neighborhoods" class="tab-pane">
-        <div style="background:#ffffff; border:1px solid var(--border); border-radius:var(--radius-md); padding:1rem; display:flex; flex-direction:column; gap:0.75rem; box-shadow:var(--shadow-sm);">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
-            <div>
-              <div style="font-weight:700; color:var(--navy); font-size:0.95rem;">Neighborhood Profiles & Transit Connectivity</div>
-              <div style="color:var(--text-muted); font-size:0.78rem; margin-top:0.15rem;">
-                Station proximity, transit modes, and urban character across Greater Stockholm hubs.
-              </div>
-            </div>
-            <div style="display:flex; gap:0.4rem;">
-              <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="loadNeighborhoods('Solna')">Solna Only</button>
-              <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.75rem;" onclick="loadNeighborhoods('')">All Areas</button>
-            </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:0.75rem 1rem; border-radius:var(--radius-sm); font-size:0.8rem; border:1px solid var(--border-subtle);">
+          <div style="color:var(--text-muted);">
+            Station proximity, transit modes, and neighborhood profiles across Greater Stockholm.
           </div>
-          <img src="/images/neighborhoods_overview.png" alt="Stockholm Transit & Neighborhoods Visual" style="width:100%; max-height:160px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn btn-secondary" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="loadNeighborhoods('Solna')">Solna Only</button>
+            <button class="btn btn-secondary" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="loadNeighborhoods('')">All Areas</button>
+          </div>
         </div>
 
         <div class="ranking-grid" id="neighborhoodCardsGrid">
@@ -881,46 +832,46 @@
 
       <!-- TAB 5: OFFICIAL QUEUES & PORTALS -->
       <div id="tab-queues" class="tab-pane">
-        <div style="background:var(--accent-soft); border:1px solid rgba(30,77,56,0.2); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.82rem; color:var(--accent);">
-          <strong>Official Swedish Housing Distribution Systems:</strong> Direct access to municipal rental queues (hyresrätter) and regulated housing platforms.
+        <div style="background:rgba(2,132,199,0.1); border:1px solid rgba(2,132,199,0.3); border-radius:8px; padding:0.85rem; font-size:0.82rem; color:#7dd3fc;">
+          🛡️ <strong>Official Swedish Housing Distribution Systems:</strong> Direct access to municipal rental queues (hyresrätter) and verified housing platforms.
         </div>
 
         <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem; margin-top:0.5rem;">
-          <div class="scandi-card">
-            <div class="scandi-title">Bostadsförmedlingen i Stockholm</div>
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Bostadsförmedlingen i Stockholm</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">Stockholm Region Central Queue</div>
-            <div class="scandi-metric-row"><span>Covers:</span><span class="stat-mono">Stockholm, Solna, Sundbyberg</span></div>
-            <div class="scandi-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
-            <a href="https://bostad.stockholm.se/" target="_blank" class="btn btn-secondary" style="margin-top:0.5rem; padding:0.45rem; font-size:0.8rem;">
+            <div class="a2ui-metric-row"><span>Covers:</span><span class="stat-mono">Stockholm, Solna, Sundbyberg</span></div>
+            <div class="a2ui-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
+            <a href="https://bostad.stockholm.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
               Visit Official Portal ↗
             </a>
           </div>
 
-          <div class="scandi-card">
-            <div class="scandi-title">Signalisten Solna</div>
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Signalisten Solna</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">Solna Municipal Housing Company</div>
-            <div class="scandi-metric-row"><span>Queue System:</span><span class="stat-mono">Via Bostadsförmedlingen</span></div>
-            <div class="scandi-metric-row"><span>Stock:</span><span class="stat-mono">~5,000 apartments</span></div>
-            <a href="https://www.signalisten.se/" target="_blank" class="btn btn-secondary" style="margin-top:0.5rem; padding:0.45rem; font-size:0.8rem;">
+            <div class="a2ui-metric-row"><span>Queue System:</span><span class="stat-mono">Via Bostadsförmedlingen</span></div>
+            <div class="a2ui-metric-row"><span>Stock:</span><span class="stat-mono">~5,000 apartments</span></div>
+            <a href="https://www.signalisten.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
               Visit Signalisten ↗
             </a>
           </div>
 
-          <div class="scandi-card">
-            <div class="scandi-title">Förvaltaren Sundbyberg</div>
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Förvaltaren Sundbyberg</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">Sundbyberg Municipal Housing</div>
-            <div class="scandi-metric-row"><span>Queue System:</span><span class="stat-mono">Direct Municipal Queue</span></div>
-            <div class="scandi-metric-row"><span>Student/Youth Pool:</span><span class="stat-mono">Available</span></div>
-            <a href="https://www.forvaltaren.se/" target="_blank" class="btn btn-secondary" style="margin-top:0.5rem; padding:0.45rem; font-size:0.8rem;">
+            <div class="a2ui-metric-row"><span>Queue System:</span><span class="stat-mono">Direct Municipal Queue</span></div>
+            <div class="a2ui-metric-row"><span>Student/Youth Pool:</span><span class="stat-mono">Available</span></div>
+            <a href="https://www.forvaltaren.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
               Visit Förvaltaren ↗
             </a>
           </div>
 
-          <div class="scandi-card">
-            <div class="scandi-title">Boplats Göteborg</div>
+          <div class="a2ui-card">
+            <div class="a2ui-card-title">Boplats Göteborg</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">Gothenburg Municipal Housing Queue</div>
-            <div class="scandi-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
-            <a href="https://nya.boplats.se/" target="_blank" class="btn btn-secondary" style="margin-top:0.5rem; padding:0.45rem; font-size:0.8rem;">
+            <div class="a2ui-metric-row"><span>Annual Fee:</span><span class="stat-mono">200 SEK/yr</span></div>
+            <a href="https://nya.boplats.se/" target="_blank" class="btn" style="margin-top:0.5rem; padding:0.4rem; font-size:0.8rem;">
               Visit Boplats Göteborg ↗
             </a>
           </div>
@@ -930,15 +881,15 @@
   </main>
 
   <!-- Edit Memory Profile Modal -->
-  <div id="memoryModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.6); z-index:100; justify-content:center; align-items:center;">
-    <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; max-width:550px; width:90%; padding:1.5rem; display:flex; flex-direction:column; gap:1rem; box-shadow:var(--shadow-md);">
+  <div id="memoryModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:100; justify-content:center; align-items:center;">
+    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:12px; max-width:550px; width:90%; padding:1.5rem; display:flex; flex-direction:column; gap:1rem;">
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">
-        <h3 style="color:var(--navy); font-size:1.05rem;">Edit Saved Preferences</h3>
-        <button style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;" onclick="closeMemoryModal()">✕</button>
+        <h3 style="color:#fff;">🧠 Edit Long-Term Memory Profile</h3>
+        <button style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;" onclick="closeMemoryModal()">✕</button>
       </div>
       <div class="form-group">
         <label>Saved Notes & Preferences (One per line)</label>
-        <textarea id="modalMemoryNotes" style="height:120px; background:#ffffff; border:1px solid var(--border); color:var(--navy); border-radius:8px; padding:0.75rem; font-family:inherit; resize:vertical;"></textarea>
+        <textarea id="modalMemoryNotes" style="height:120px; background:var(--surface); border:1px solid var(--surface-light); color:#fff; border-radius:8px; padding:0.75rem; font-family:inherit; resize:vertical;"></textarea>
       </div>
       <div class="grid-2">
         <div class="form-group">
@@ -1194,7 +1145,6 @@
         const sourceVal = apt.source || 'Public Marketplace';
 
         card.innerHTML = 
-          '<img src="/images/interior_nordic.png" alt="Nordic Apartment Layout" class="card-media-banner">' +
           '<div class="scandi-header">' +
             '<div>' +
               '<span class="scandi-tag tag-hypothetical">Hypothetical Scenario</span>' +
@@ -1243,19 +1193,18 @@
       container.innerHTML = '';
       links.forEach(l => {
         const item = document.createElement('div');
-        item.style.background = '#ffffff';
-        item.style.border = '1px solid var(--border)';
+        item.style.background = 'var(--card-bg)';
+        item.style.border = '1px solid var(--border-subtle)';
         item.style.borderRadius = 'var(--radius-sm)';
         item.style.padding = '0.75rem 0.85rem';
         item.style.display = 'flex';
         item.style.flexDirection = 'column';
         item.style.justifyContent = 'space-between';
         item.style.gap = '0.4rem';
-        item.style.boxShadow = 'var(--shadow-sm)';
 
         item.innerHTML = 
           '<div>' +
-            '<div style="font-weight:700; color:var(--navy); font-size:0.83rem;">' + l.service + '</div>' +
+            '<div style="font-weight:600; color:#fff; font-size:0.83rem;">' + l.service + '</div>' +
             '<div style="font-size:0.73rem; color:var(--text-muted); margin-top:0.15rem;">' + (l.description || '') + '</div>' +
           '</div>' +
           '<a href="' + l.url + '" target="_blank" class="btn btn-secondary" style="font-size:0.74rem; padding:0.3rem 0.6rem; align-self:flex-start;">' +
